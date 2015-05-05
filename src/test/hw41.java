@@ -8,7 +8,7 @@ public class hw41 {
 		// TODO Auto-generated method stub
 		
 		
-		String[]SearchArray={ "apple","grape"};//,'tomato','banana','orange'};
+		String[]SearchArray={ "apple1","grape"};//,'tomato','banana','orange'};
 		Arrays.sort(SearchArray);
 		for(int j=0;j<=SearchArray.length;j++){
 			
