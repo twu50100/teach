@@ -2,7 +2,9 @@ package test;
 
 public class hw62 {
 
-	
+	public static void main(String[] args){
+		  setData("twu",true,20,"A123456789");
+		 }
 		private String name;
 		private boolean gender;
 		private int age;
