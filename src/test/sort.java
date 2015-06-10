@@ -1,4 +1,4 @@
-package src.test;
+package test;
 
 public class sort {
 
