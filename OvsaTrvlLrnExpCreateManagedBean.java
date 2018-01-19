@@ -36,7 +36,6 @@ import tw.com.skl.exp.kernel.model6.bo.BizMatter;
 import tw.com.skl.exp.kernel.model6.bo.Country;
 import tw.com.skl.exp.kernel.model6.bo.Currency;
 import tw.com.skl.exp.kernel.model6.bo.Department;
-import tw.com.skl.exp.kernel.model6.bo.DepartmentMail;
 import tw.com.skl.exp.kernel.model6.bo.Entry;
 import tw.com.skl.exp.kernel.model6.bo.EntryGroup;
 import tw.com.skl.exp.kernel.model6.bo.EntryType;
@@ -1324,6 +1323,7 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 		String tagId = vce.getComponent().getId();
 		OvsaTrvlLrnExpVo vo = (OvsaTrvlLrnExpVo) getUpdatingData();
 		OvsaTrvlLrnExp exp = getUpdatingDataValue();
+
 		Map<String, Object> criteriaMap = null;
 
 		try {
@@ -2823,6 +2823,20 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 	public String doCreateOvsaDailyWorkAction() {
 		checkOvsaDailyWork();
 		ovsaDailyWorkList.add(getUpdatingOvsaDailyWork());
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 start
+		Collections.sort(ovsaDailyWorkList, new Comparator<OvsaDailyWork>() {
+			public int compare(OvsaDailyWork arg0, OvsaDailyWork arg1) {
+				// 回傳值: -1 前者比後者小, 0 前者與後者相同, 1 前者比後者大
+				if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == 1) {
+					return 1;
+				} else if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == -1) {
+					return -1;
+				} else {
+					return arg0.getStartTimeHour().compareTo(arg1.getStartTimeHour());
+				}
+			}
+		});
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 end
 		setUpdatingOvsaDailyWork(new OvsaDailyWork());
 		updatingOvsaDailyWork.setStartTimeHour("00");
 		updatingOvsaDailyWork.setStartTimeMinute("00");
@@ -2840,6 +2854,21 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 		checkOvsaDailyWork();
 
 		BeanUtils.copyProperties(getUpdatingOvsaDailyWork(), ovsaDailyWorkList.get(getUpdateOvsaDailyWorkIndex()));
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 start
+		Collections.sort(ovsaDailyWorkList, new Comparator<OvsaDailyWork>() {
+			public int compare(OvsaDailyWork arg0, OvsaDailyWork arg1) {
+				// 回傳值: -1 前者比後者小, 0 前者與後者相同, 1 前者比後者大
+				if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == 1) {
+					return 1;
+				} else if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == -1) {
+					return -1;
+				} else {
+					return arg0.getStartTimeHour().compareTo(arg1.getStartTimeHour());
+				}
+			}
+		});
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 end
+
 		setUpdatingOvsaDailyWork(new OvsaDailyWork());
 		updatingOvsaDailyWork.setStartTimeHour("00");
 		updatingOvsaDailyWork.setStartTimeMinute("00");
@@ -2954,6 +2983,7 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 			newOvsaDailyWorkList.add(newbo);
 		}
 
+
 		Map<String, Object> crit = new HashMap<String, Object>();
 		crit.put("expapplC", expapplC);
 		List<OvsaDailyWork> deleteOvsaDailyWork = facade.getOvsaDailyWorkService().findByCriteriaMap(crit);
@@ -2999,28 +3029,8 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 		HttpSession mySession = (HttpSession) extCtx.getSession(true);
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<OvsaDailyWork> dtoList = new ArrayList<OvsaDailyWork>();
-		
-		//1070111 START 
-		
-		List<OvsaDailyWork> sortList = getOvsaDailyWorkList();
-        Collections.sort(sortList,new Comparator<OvsaDailyWork>(){
-            public int compare(OvsaDailyWork arg0, OvsaDailyWork arg1) {
-		    	 // 回傳值: -1 前者比後者小, 0 前者與後者相同, 1 前者比後者大        	    	        	      
-		        if(arg0.getAbroadDate().compareTo(arg1.getAbroadDate())==1){
-		        	return 1;
-		        }     		            
-		        else if(arg0.getAbroadDate().compareTo(arg1.getAbroadDate())==-1){ 
-		            return -1;
-		        }
-		        else{
-		        	return arg0.getStartTimeHour().compareTo(arg1.getStartTimeHour());
-		        }
-            }
-        });
-        
 		// 將日期轉換為字串
-		for (OvsaDailyWork dto : sortList) {
-			//1070111 end
+		for (OvsaDailyWork dto : getOvsaDailyWorkList()) {
 			String dayString = "";
 			dayString = StringUtils.substring(StringUtils.leftPad(DateUtils.getROCDateStr(dto.getAbroadDate().getTime(), "", true), 7, "0"), 0, 7);
 			dto.setAbroadDateString(dayString);
@@ -3038,6 +3048,20 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 	}
 
 	public List<OvsaDailyWork> getOvsaDailyWorkList() {
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 start
+		Collections.sort(ovsaDailyWorkList, new Comparator<OvsaDailyWork>() {
+			public int compare(OvsaDailyWork arg0, OvsaDailyWork arg1) {
+				// 回傳值: -1 前者比後者小, 0 前者與後者相同, 1 前者比後者大
+				if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == 1) {
+					return 1;
+				} else if (arg0.getAbroadDate().compareTo(arg1.getAbroadDate()) == -1) {
+					return -1;
+				} else {
+					return arg0.getStartTimeHour().compareTo(arg1.getStartTimeHour());
+				}
+			}
+		});
+		// RE201800088_國內/國外出差費用核銷費用明細總表新增資料欄位 EC0416 2018/1/12 end
 		return ovsaDailyWorkList;
 	}
 
@@ -3092,6 +3116,7 @@ public class OvsaTrvlLrnExpCreateManagedBean extends TemplateDataTableManagedBea
 	}
 
 	public OvsaDailyWork getUpdatingOvsaDailyWork() {
+
 		return updatingOvsaDailyWork;
 	}
 
