@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import tw.com.skl.exp.kernel.model6.common.util.MessageUtils;
 import tw.com.skl.common.model6.web.vo.ValueObject;
 import tw.com.skl.exp.kernel.model6.bo.Department;
 import tw.com.skl.exp.kernel.model6.bo.Function.FunctionCode;
@@ -143,7 +144,14 @@ public class BizTripReportManagedBean extends ExpTemplateDataTableManagedBean<In
 		if (StringUtils.isBlank(bizMatter)) {
 			bizMatter = "ALL";
 		}
-
+		//當起日與迄日不為空時，再判斷
+		if(duringDateStart!=null&&duringDateEnd!=null){
+			if (duringDateStart.compareTo(duringDateEnd) >= 1) {
+			// 錯誤訊息 出差起日不可大於出差迄日
+				throw new ExpRuntimeException(ErrorCode.C10634, new String[] { MessageUtils.getAccessor().getMessage("tw_com_skl_exp_web_jsf_managed_gae_biz_DuringDateStart"), MessageUtils.getAccessor().getMessage("tw_com_skl_exp_web_jsf_managed_gae_biz_duringDateEnd") });
+			}
+		}
+		
 		String rptName = "";
 		// 報表名稱與路徑
 		rptName = CrystalReportConfigManagedBean.getManagedBean().getBizTripReportName();
