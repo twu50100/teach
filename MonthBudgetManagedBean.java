@@ -22,6 +22,7 @@ import tw.com.skl.exp.kernel.model6.bo.BfmDepartmentType;
 import tw.com.skl.exp.kernel.model6.bo.BfmMonthBudget;
 import tw.com.skl.exp.kernel.model6.bo.Budget;
 import tw.com.skl.exp.kernel.model6.bo.BudgetYear;
+import tw.com.skl.exp.kernel.model6.bo.ProjectBudgetItem;
 import tw.com.skl.exp.kernel.model6.bo.User;
 import tw.com.skl.exp.kernel.model6.common.util.AAUtils;
 import tw.com.skl.exp.kernel.model6.dto.SpliteBudgetItemDto;
@@ -222,7 +223,9 @@ public class MonthBudgetManagedBean implements Serializable {
 
 		// 拆分功能修改 EC0416 2018/1/22 start
 		// 當執行月預算編列完成後，若有執行拆分過的單位須依比例重新計算拆分金額並回寫入拆分檔TBBFM_PROJECT_BUDGET_ITEMS
-		doSplitAction(getSelectBudgetYearId(), getSelectDepartmentId());
+		BfmDepartment department = departmentMap.get(this.getSelectDepartmentId());
+		String depCode=department.getCode();
+		doSplitAction(getSelectBudgetYearId(), depCode);
 		// 拆分功能修改 EC0416 2018/1/22 end
 
 		// 顯示編列月預算完成
@@ -301,40 +304,37 @@ public class MonthBudgetManagedBean implements Serializable {
 					BigDecimal splitOriginAmt = dto.getOriginAmount();
 					// 拆分後新屬性金額
 					BigDecimal splitNewAmt = dto.getSpliteAmount();
-					//原屬性金額+拆分後金額
-					BigDecimal splitTotalAmt=splitOriginAmt.add(splitNewAmt);
-					
-					//如果編制金額與(原屬性金額+拆分後金額)不相等				
-					if(amount.compareTo(splitTotalAmt) != 0){
-					//依比例重新計算原屬性金額與拆分後金額並寫回拆分檔	
+					// 原屬性金額+拆分後金額
+					BigDecimal splitTotalAmt = splitOriginAmt.add(splitNewAmt);
+
+					// 如果編制金額與(原屬性金額+拆分後金額)不相等
+					if (amount.compareTo(splitTotalAmt) != 0) {
+						// 依比例重新計算原屬性金額與拆分後金額並寫回拆分檔 
+						BigDecimal id = getBudgetFacade().getProjectBudgetItemService().findProjectBudgetItemByYYYYAndDepCode(dto.getYyyy(), dto.getDepCode(), dto.getBudgetItemCode());
+						ProjectBudgetItem bo =getBudgetFacade().getProjectBudgetItemService().findByPK(id.toString());		
+						
+						// 新的拆分後原屬性金額
+						BigDecimal newSplitOriginAmt = BigDecimal.ZERO;
+						// 新的拆分後新屬性金額
+						BigDecimal newSplitNewAmt = BigDecimal.ZERO;
+
+						// 新的拆分後新屬性金額
+						// 編制金額(amount)X(拆分後新屬性金額(split_new_amt))/(（拆分原屬性金額(split_origin_amt)+拆分後新屬性金額(split_new_amt)）)
+						newSplitNewAmt = amount.multiply(splitNewAmt.divide(splitOriginAmt.add(splitNewAmt))).setScale(0, BigDecimal.ROUND_HALF_UP);
+
+						// 新的拆分後原屬性金額
+						// 編制金額(amount)-新的拆分後新屬性金額(tbbfm_project_budget_items.split_new_amt)newSplitOriginAmt=amount.subtract(newSplitNewAmt);
+						newSplitOriginAmt=amount.subtract(newSplitNewAmt);
+						
+						// 重新計算過的金額寫回拆分檔
+						// 拆分後原屬性金額
+						bo.setSplitOriginAmt(newSplitOriginAmt);
+						// 拆分後新屬性金額
+						bo.setSplitNewAmt(newSplitNewAmt);
 					}
-					
 
 				}
 
-				
-				// 新的拆分後原屬性金額
-				BigDecimal newSplitOriginAmt = BigDecimal.ZERO;
-				// 新的拆分後新屬性金額
-				BigDecimal newSplitNewAmt = BigDecimal.ZERO;
-
-				// 新的拆分後新屬性金額
-				// 編制金額(amount)X(拆分後新屬性金額(
-				// split_new_amt))/(（拆分原屬性金額(split_origin_amt)+拆分後新屬性金額(split_new_amt)）)
-				// newSplitNewAmt=amount.multiply(splitNewAmt.divide(splitOriginAmt.add(splitNewAmt))).setScale(0,
-				// BigDecimal.ROUND_HALF_UP);;
-				//
-				// //新的拆分後原屬性金額
-				// //編制金額(amount)-新的拆分後新屬性金額(tbbfm_project_budget_items.split_new_amt)
-				// newSplitOriginAmt=amount.subtract(newSplitNewAmt);
-
-				// 重新計算過的金額寫回拆分檔
-				// 拆分後原屬性金額
-				// bo.setOriginAmount(newSplitOriginAmt);
-				// //拆分後新屬性金額
-				// bo.setSpliteAmount(newSplitNewAmt);
-
-				// }
 			}
 		}
 
