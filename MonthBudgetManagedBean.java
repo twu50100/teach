@@ -3,6 +3,7 @@
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -22,8 +23,12 @@ import tw.com.skl.exp.kernel.model6.bo.BfmDepartmentType;
 import tw.com.skl.exp.kernel.model6.bo.BfmMonthBudget;
 import tw.com.skl.exp.kernel.model6.bo.Budget;
 import tw.com.skl.exp.kernel.model6.bo.BudgetYear;
+import tw.com.skl.exp.kernel.model6.bo.DepartmentProperty;
 import tw.com.skl.exp.kernel.model6.bo.ProjectBudgetItem;
 import tw.com.skl.exp.kernel.model6.bo.User;
+import tw.com.skl.exp.kernel.model6.bo.Function.FunctionCode;
+import tw.com.skl.exp.kernel.model6.common.ErrorCode;
+import tw.com.skl.exp.kernel.model6.common.exception.ExpRuntimeException;
 import tw.com.skl.exp.kernel.model6.common.util.AAUtils;
 import tw.com.skl.exp.kernel.model6.dto.SpliteBudgetItemDto;
 import tw.com.skl.exp.kernel.model6.facade.BudgetFacade;
@@ -291,9 +296,8 @@ public class MonthBudgetManagedBean implements Serializable {
 		dtoList = getBudgetFacade().getProjectBudgetItemService().findSpliteDtoByyyyyAndDepCode(yyyy, depCode);
 		// 如果拆分後屬性不為空，則依比例重新計算拆分後金額
 		if (!CollectionUtils.isEmpty(dtoList)) {
-			for (Object obj : dtoList) {
-				SpliteBudgetItemDto dto = new SpliteBudgetItemDto();
-				Object[] record = (Object[]) obj;
+			for (SpliteBudgetItemDto dto : dtoList) {
+				
 				// 拆分屬性
 				String originDepPropName = dto.getOriginDepPropCode();
 				// 若拆分屬性有值則比較編制金額
@@ -331,6 +335,20 @@ public class MonthBudgetManagedBean implements Serializable {
 						bo.setSplitOriginAmt(newSplitOriginAmt);
 						// 拆分後新屬性金額
 						bo.setSplitNewAmt(newSplitNewAmt);
+						
+						//寫入更新人員
+						bo.setUpdateUser((User)AAUtils.getLoggedInUser());
+						getBudgetFacade().getProjectBudgetItemService().update(bo);
+						
+						Map<String, Object> crit = new HashMap<String, Object>();
+						crit.put("code", dto.getSpliteDepPropCode());
+						DepartmentProperty prop = getBudgetFacade().getDepartmentPropertyService().findByCriteriaMapReturnUnique(crit);
+						
+						//紀錄當前操作功能
+						String remark = "拆分金額重新計算，儲存:單位:"+dto.getDepCode()+"; 預算代號:"+dto.getBudgetItemCode()+"; 拆分:"+prop.getName()+"; 金額:"+dto.getSpliteAmount();		
+
+						//紀錄簽核歷程
+						createFlowCheckStatus(dto,remark);
 					}
 
 				}
@@ -338,6 +356,28 @@ public class MonthBudgetManagedBean implements Serializable {
 			}
 		}
 
+	}
+	
+	public void createFlowCheckStatus(SpliteBudgetItemDto dto , String remark){
+		//”年度”+”單位代號”+”預算代號”
+		String expApplNo = dto.getYyyy()+dto.getDepCode()+dto.getBudgetItemCode();
+		
+		//找出預算狀態
+		Map<String, Object> crit = new HashMap<String, Object>();
+		crit.put("code", dto.getDepCode());
+		BfmDepartment bfmDepartment = getBudgetFacade().getBfmDepartmentService().findByCriteriaMapReturnUnique(crit);
+		Budget budget = getBudgetFacade().getBudgetService().readBudgetByDepartmentAndYear(bfmDepartment,Integer.parseInt(dto.getYyyy()));
+		
+		if(budget==null&&budget.getBudgetStateType()==null){
+			throw new ExpRuntimeException(ErrorCode.E00002);
+		}		
+				
+		//紀錄簽核歷程
+		getBudgetFacade().getFlowCheckstatusService().createByE(expApplNo, getFunctionCode(), budget.getBudgetStateType(), remark);
+	}
+	
+	public FunctionCode getFunctionCode() {
+		return FunctionCode.E_1_3;
 	}
 
 	private SpliteBudgetItemDto getUpdatingDto() {
