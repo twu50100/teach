@@ -24,9 +24,9 @@ import tw.com.skl.exp.kernel.model6.bo.BfmMonthBudget;
 import tw.com.skl.exp.kernel.model6.bo.Budget;
 import tw.com.skl.exp.kernel.model6.bo.BudgetYear;
 import tw.com.skl.exp.kernel.model6.bo.DepartmentProperty;
+import tw.com.skl.exp.kernel.model6.bo.Function.FunctionCode;
 import tw.com.skl.exp.kernel.model6.bo.ProjectBudgetItem;
 import tw.com.skl.exp.kernel.model6.bo.User;
-import tw.com.skl.exp.kernel.model6.bo.Function.FunctionCode;
 import tw.com.skl.exp.kernel.model6.common.ErrorCode;
 import tw.com.skl.exp.kernel.model6.common.exception.ExpRuntimeException;
 import tw.com.skl.exp.kernel.model6.common.util.AAUtils;
@@ -206,7 +206,7 @@ public class MonthBudgetManagedBean implements Serializable {
 		}
 
 		return "confirmDepartmentAndYearForMonthBudget";
-	}
+	}  
 
 	/**
 	 * 送出上傳按鈕
@@ -297,11 +297,10 @@ public class MonthBudgetManagedBean implements Serializable {
 		// 如果拆分後屬性不為空，則依比例重新計算拆分後金額
 		if (!CollectionUtils.isEmpty(dtoList)) {
 			for (SpliteBudgetItemDto dto : dtoList) {
-				
-				// 拆分屬性
-				String originDepPropName = dto.getOriginDepPropCode();
-				// 若拆分屬性有值則比較編制金額
-				if (originDepPropName != null) {
+				// 拆分後屬性
+				String spliteDepPropName = dto.getSpliteDepPropName();
+				// 若拆分後屬性有值則比較編制金額
+				if (StringUtils.isNotBlank(spliteDepPropName)){
 					// 編制金額
 					BigDecimal amount = dto.getAmount();
 					// 拆分後原屬性金額
@@ -357,7 +356,7 @@ public class MonthBudgetManagedBean implements Serializable {
 		}
 
 	}
-	
+
 	public void createFlowCheckStatus(SpliteBudgetItemDto dto , String remark){
 		//”年度”+”單位代號”+”預算代號”
 		String expApplNo = dto.getYyyy()+dto.getDepCode()+dto.getBudgetItemCode();
@@ -379,21 +378,6 @@ public class MonthBudgetManagedBean implements Serializable {
 	public FunctionCode getFunctionCode() {
 		return FunctionCode.E_1_3;
 	}
-
-	private SpliteBudgetItemDto getUpdatingDto() {
-		// TODO Auto-generated method stub
-		return updatingDto;
-	}
-
-	/**
-	 * 修改頁面用SpliteBudgetItemDto
-	 * 
-	 * @param updatingDto
-	 */
-	public void setUpdatingDto(SpliteBudgetItemDto updatingDto) {
-		this.updatingDto = updatingDto;
-	}
-
 	// 拆分功能修改 EC0416 2018/1/22 end
 
 	private BudgetService getBudgetService() {
