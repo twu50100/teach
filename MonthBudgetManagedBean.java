@@ -320,10 +320,20 @@ public class MonthBudgetManagedBean implements Serializable {
 						BigDecimal newSplitOriginAmt = BigDecimal.ZERO;
 						// 新的拆分後新屬性金額
 						BigDecimal newSplitNewAmt = BigDecimal.ZERO;
-
+						//計算拆分後屬性金額比例
+						BigDecimal newSplitPercent=BigDecimal.ZERO;
+						//拆分金額
+						BigDecimal splitAmt=BigDecimal.ZERO;
+						
+						//拆分金額=（拆分原屬性金額(split_origin_amt)+拆分後新屬性金額(split_new_amt)
+						splitAmt=splitOriginAmt.add(splitNewAmt);
+						
+						//計算拆分後屬性金額比例=拆分後新屬性金額(split_new_amt)/拆分金額
+						newSplitPercent=splitNewAmt.divide(splitAmt, 4, BigDecimal.ROUND_HALF_UP);
+						
 						// 新的拆分後新屬性金額
-						// 編制金額(amount)X(拆分後新屬性金額(split_new_amt))/(（拆分原屬性金額(split_origin_amt)+拆分後新屬性金額(split_new_amt)）)
-						newSplitNewAmt = amount.multiply(splitNewAmt.divide(splitOriginAmt.add(splitNewAmt))).setScale(0, BigDecimal.ROUND_HALF_UP);
+						// 編制金額(amount)*拆分後屬性金額比例
+						newSplitNewAmt = amount.multiply(newSplitPercent).setScale(0, BigDecimal.ROUND_HALF_UP);
 
 						// 新的拆分後原屬性金額
 						// 編制金額(amount)-新的拆分後新屬性金額(tbbfm_project_budget_items.split_new_amt)newSplitOriginAmt=amount.subtract(newSplitNewAmt);
@@ -344,7 +354,7 @@ public class MonthBudgetManagedBean implements Serializable {
 						DepartmentProperty prop = getBudgetFacade().getDepartmentPropertyService().findByCriteriaMapReturnUnique(crit);
 						
 						//紀錄當前操作功能
-						String remark = "拆分金額重新計算，儲存:單位:"+dto.getDepCode()+"; 預算代號:"+dto.getBudgetItemCode()+"; 拆分:"+prop.getName()+"; 金額:"+dto.getSpliteAmount();		
+						String remark = "拆分金額重新計算，儲存:單位:"+dto.getDepCode()+"; 預算代號:"+dto.getBudgetItemCode()+"; 拆分:"+prop.getName()+"; 金額:"+bo.getSplitNewAmt();		
 
 						//紀錄簽核歷程
 						createFlowCheckStatus(dto,remark);
