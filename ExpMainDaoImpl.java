@@ -7205,9 +7205,6 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 				sb.append("                             DEP.DEPCODE, DEP.DEPNAME,                             ");
 				sb.append("                             DEP.PROPCODE, DEP.PROPNAME,  ");
 				sb.append("                             0 AS AAMT,   "); // --預算
-				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-				sb.append("                             ESE.SUBPOENA_NO AS SUBPOENA_NO,   "); 
-				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
 				sb.append("                             CASE WHEN DEP.DTCODE IN ('0','1') THEN DECODE(ET.ENTRY_VALUE, 'D', ESE.AMT, 'C', -1 * ESE.AMT)  ");
 				sb.append("                                  WHEN DEP.DTCODE IN ('2','3','5','Y') AND ESE.DEP_UNIT_CODE1 = ESE.COST_UNIT_CODE  ");
 				sb.append("                                  THEN DECODE(ET.ENTRY_VALUE, 'D', ESE.AMT, 'C', -1 * ESE.AMT)  ");
@@ -7232,7 +7229,7 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 				sb.append("                                           INNER JOIN TBEXP_DEP_TYPE DT ON DEP.TBEXP_DEP_TYPE_ID = DT.ID                      ");
 				sb.append("                                         ) DEP3 ON ESE.COST_UNIT_CODE = DEP3.DEPCODE                                         ");
 				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-				sb.append("                                         AND ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')     ");	
+				sb.append("                                         	WHERE ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')     ");	
 				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
 				
 				sb.append("                           UNION  ");
@@ -9347,9 +9344,6 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 				sb.append("                             CASE  WHEN DEP.BUDCODE='101100' THEN DEPCODE  ");
 				sb.append("                             ELSE DEP.BUDCODE   END AS BUDCODE  ,  ");
 				sb.append("                             0 AS AAMT,   "); // --預算
-				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start		
-				sb.append("                             ESE.SUBPOENA_NO,   "); // --預算
-				//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
 				sb.append("                             DECODE(ET.ENTRY_VALUE, 'D', ESE.AMT, 'C', -1 * ESE.AMT) AS BAMT  "); // --實支
 				sb.append("                           FROM TBEXP_EXT_SYS_ENTRY ESE  ");
 				sb.append("                             INNER JOIN TBEXP_ENTRY_TYPE ET  ON ESE.TBEXP_ENTRY_TYPE_ID = ET.ID  ");
@@ -12478,14 +12472,14 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 		queryString.append("  					ACCT_CODE,    ");
 		queryString.append("  					COST_UNIT_CODE,    ");
 		queryString.append("  					AMT,    ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-		queryString.append("  					SUBPOENA_DATE,    ");
-		queryString.append("  					SUBPOENA_NO    ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
+		queryString.append("  					SUBPOENA_DATE    ");
 		queryString.append("  				FROM TBEXP_EXT_SYS_ENTRY ESE    ");
 		queryString.append("  				WHERE TO_CHAR(SUBPOENA_DATE,'YYYYMMDD') BETWEEN  ");
 		queryString.append("		                SUBSTR('").append(DateUtils.getSimpleISODateStr(endDate.getTime())).append("',1,4) || '0101' ");
 		queryString.append(" 		                AND '").append(DateUtils.getSimpleISODateStr(endDate.getTime())).append("'   ");
+		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
+		queryString.append("                        AND ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')    ");
+		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end	
 		queryString.append(" 				 ) ESE    ");
 		queryString.append("  			INNER JOIN TBEXP_ENTRY_TYPE ET  ON ESE.TBEXP_ENTRY_TYPE_ID = ET.ID       ");
 		queryString.append("  			INNER JOIN TBEXP_ACC_TITLE ACCT ON ESE.ACCT_CODE = ACCT.CODE       ");
@@ -12498,10 +12492,7 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 		}
 		if (depCode == null || !depCode.equals("ALL")) {
 			queryString.append("		AND DEP.BUDGET_DEP_CODE='").append(depCode).append("'   ");
-		}
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-		queryString.append("             AND ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')    ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end		
+		}	
 		queryString.append("  			) MM       ");
 		queryString.append("  			GROUP BY  MM.BCODE ,MM.DEPCODE    ");
 		queryString.append(" 	)MM ON  M.BICODE = MM.BCODE AND M.DEPCODE=MM.DEPCODE     ");
@@ -13277,14 +13268,14 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 		queryString.append("  					ACCT_CODE,    ");
 		queryString.append("  					COST_UNIT_CODE,    ");
 		queryString.append("  					AMT,    ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-		queryString.append("  					SUBPOENA_DATE ,   ");
-		queryString.append("  					SUBPOENA_NO    ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end		
+		queryString.append("  					SUBPOENA_DATE    ");	
 		queryString.append("  				FROM TBEXP_EXT_SYS_ENTRY ESE    ");
 		queryString.append("  				WHERE TO_CHAR(SUBPOENA_DATE,'YYYYMMDD') BETWEEN  ");
 		queryString.append("		                SUBSTR('").append(DateUtils.getSimpleISODateStr(endDate.getTime())).append("',1,4) || '0101' ");
 		queryString.append(" 		                AND '").append(DateUtils.getSimpleISODateStr(endDate.getTime())).append("'   ");
+		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
+		queryString.append("                       AND ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')   ");
+		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
 		queryString.append(" 				 ) ESE    ");
 		queryString.append("  			INNER JOIN TBEXP_ENTRY_TYPE ET  ON ESE.TBEXP_ENTRY_TYPE_ID = ET.ID       ");
 		queryString.append("  			INNER JOIN TBEXP_ACC_TITLE ACCT ON ESE.ACCT_CODE = ACCT.CODE       ");
@@ -13300,11 +13291,7 @@ public class ExpMainDaoImpl extends BaseDaoImpl<ExpMain, String> implements ExpM
 		}
 		if (depCode == null || !depCode.equals("ALL")) {
 			queryString.append("		AND DEP.BUDGET_DEP_CODE='").append(depCode).append("'   ");
-		}
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 start
-		queryString.append("    AND ESE.SUBPOENA_NO NOT  IN('J827110002','J827115006','J827115009','J827115010')   ");
-		//RE201800605_傳票不計入107預算實支 ec0416 2018/3/12 end
-		
+		}		
 		queryString.append("  			) MM       ");
 		queryString.append("  			GROUP BY  MM.BCODE ,MM.DEPCODE    ");
 		queryString.append(" 	)MM ON  M.BICODE = MM.BCODE AND M.DEPCODE=MM.DEPCODE     ");
