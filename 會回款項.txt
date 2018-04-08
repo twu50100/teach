@@ -1,0 +1,9 @@
+
+SELECT r.*, c.EXP_APPL_NO,c.id,t.code,t.name FROM TBEXP_EXPAPPL_C C
+inner join TBEXP_ENTRY e ON E.TBEXP_entry_group_id =c.TBEXP_entry_group_id
+left join TBEXP_TAX_DETAIL_EXPAPPL_C_R R on r.TBEXP_EXPAPPL_C_id=c.id
+inner join tbexp_acc_title t on t.id=e.tbexp_acc_title_id
+WHERE C.EXP_APPL_NO LIKE 'Q10%' and r.tbexp_tax_detail_id is null 
+and t.code in('20210222','20210223','20210224','20210225','20210229','20210231'
+,'20210232','20210233','20210234','20210235','20210236','20210237','20210238'
+,'20210239','20210241','20210243','20210247','20210252','20210261','20210262','20210263')
