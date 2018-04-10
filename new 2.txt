@@ -1,0 +1,56 @@
+  private void doProcessCommonRuleOnExpapplC(ExpapplC eac, Map<String, Object> result) {
+        List<TaxDetail> taxdList = (List<TaxDetail>) result.get("taxDetailList");
+        List<Entry> expEntries = (List<Entry>) result.get("expEntries");
+        //所得格式
+        String incomeForm = "";
+        //備註
+        String memo = "";        
+        //分錄
+        Entry expEn = null;
+        //所得來源類別
+        String sourceKind="";
+        boolean flag = false;
+        // 使用者的員工代號
+        String createUserId = getLoginUser().getIdentityId() != null ? getLoginUser().getIdentityId() : "";
+        Calendar sysDate = Calendar.getInstance();
+        for (Entry en : expEntries) {
+            if (!flag && StringUtils.isNotBlank(en.getAccTitle().getIncomeForm())) {
+                incomeForm = en.getAccTitle().getIncomeForm();
+                //預設所得來源類別=所得格式
+                sourceKind=incomeForm;
+                expEn = en;
+                flag = true;
+            }
+			   for (TaxDetail taxd : taxdList) {
+            // 2009/12/22,IR#1454,成本單位改由稅務明細中取得，有值才會有扣繳單位
+            taxd.setWithholdId(getExpapplCWithHoldID(taxd.getCostUnitCode()));
+            taxd.setIncomeForm(incomeForm);
+            //RE201500288_非D00的土地租金稅務明細寫入L(defect_1089) CU3178 2015/02/26 START
+            if(!eac.getMiddleType().getCode().equals("D00")){
+            	taxd.setMemo(memo);
+            }
+            //RE201500288_非D00的土地租金稅務明細寫入L(defect_1089) CU3178 2014/02/26 END
+            taxd.setSourceKind(sourceKind);
+            // 付款憑單編號 pay
+            taxd.setPayCertNo(eac.getSubpoena().getSubpoenaNo());
+            taxd.setSubpoenaNo(eac.getSubpoena().getSubpoenaNo());
+            taxd.setSubpoenaDate(eac.getSubpoena().getSubpoenaDate());
+            taxd.setTaxbizCode(expEn.getIndustryCode());
+            taxd.setTaxRate(expEn.getAccTitle().getTaxRate());
+            taxd.setRelationCode("");
+            taxd.setRelationFlag("");
+            taxd.setCreateUserId(createUserId);
+            taxd.setCreateDate(sysDate);
+            if (StringUtils.isBlank(taxd.getId())) {
+                taxd = create(taxd);
+            } else {
+                // 因為匯回款項的稅金匯回時，稅務明細是DB裡的資料，所以用update
+                taxd = update(taxd);
+            }
+            // 把值還原??
+            // memo = "";
+        }
+        // 2009/12/7,user說，要把關連設定到"費用申請單稅務明細關聯"
+        eac.setTaxDetails(taxdList);
+        eac = facade.getExpapplCService().update(eac);
+    }
