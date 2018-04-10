@@ -1,0 +1,105 @@
+ /** 行政匯回款項，外部系統費用匯回 */
+    private Map<String, Object> doProcessEacAdjustOnOutsideSystem(Map<String, Object> result, Map<String, Object> rsltMap,
+           TaxDetail taxd, RemitMoney rm, String costUnitCode, String costUnitName, List<TaxDetail> tdList) {
+        // "貸方"應付代扣科目的分錄
+        Entry crdtPblWthHldgEn = (Entry) rsltMap.get("crdtPblWthHldgEn");
+        //所得人資料分錄
+        Entry incomeDataEntry= (Entry) rsltMap.get("incomeDataEntry");
+        List<Entry> expEntries=((List<Entry>)rsltMap.get("expEntries"));
+        //expEntries.add(crdtPblWthHldgEn);
+        // 取得所得人證號類別代號
+        IncomeIdTypeCode idTypeCode = IncomeIdTypeCode.getByValue(incomeDataEntry.getIncomeIdType());
+        // 所得人資料
+        IncomeUser iu = facade.getIncomeUserService().findByIdentityIdFetchRelation(incomeDataEntry.getIncomeId());
+        if (IncomeIdTypeCode.EMP_SALARY_ID.equals(idTypeCode)
+                || IncomeIdTypeCode.EMP_ID.equals(idTypeCode)) {
+            taxd.setEmpId(incomeDataEntry.getIncomeId());
+            User u = facade.getUserService().findByCode(incomeDataEntry.getIncomeId());
+            if (u == null)
+                throw new ExpRuntimeException(ErrorCode.A20008, new String[] {
+                        MessageUtils.getAccessor().getMessage("tw_com_skl_exp_kernel_model6_bo_User_code"),
+                        incomeDataEntry.getIncomeId() });
+            taxd.setTaxId(u.getIdentityId());
+            taxd.setTaxName(u.getName());
+        } else {
+            taxd.setEmpId("");
+            if (iu == null)
+                throw new ExpRuntimeException(ErrorCode.A20008, new String[] {
+                        MessageUtils.getAccessor()
+                                .getMessage("tw_com_skl_exp_kernel_model6_bo_IncomeUser_identityId_2"),
+                                incomeDataEntry.getIncomeId() });
+            taxd.setTaxId(incomeDataEntry.getIncomeId());
+            taxd.setTaxName(iu.getName());
+        }
+        
+        String industryCode = (String) rsltMap.get("industryCode");
+        if (industryCode != null) {
+            taxd.setTaxbizCode(industryCode);
+        }
+        taxd.setCrossIncome((BigDecimal)rsltMap.get("totalCrdtAmt")); // 給付總額 
+        taxd.setWithholdingTax((BigDecimal) rsltMap.get("crdtPWHAmt")); // 扣繳稅額
+        // =貸方應付代扣金額(正數)
+        String groupId = genEntryExpGroupAndUUID(expEntries); // 費用分錄群組ID
+        taxd.setGroupId(groupId);
+        if (crdtPblWthHldgEn != null) {
+            taxd.setEntryTax(crdtPblWthHldgEn);
+        }
+        taxd.setTaxRemit("1");
+        // 存起來，待回傳
+        taxd.setCostUnitCode(costUnitCode);
+        taxd.setCostUnitName(costUnitName);
+        tdList.add(taxd);
+        result.put("expEntries", expEntries);
+        result.put("taxDetailList", tdList);
+        return result;
+    }
+	
+	吳靜怡 下午 02:25
+涂宇欣 [下午 03:36]: 
+
+靜怡 剛剛雅萍打來詢問異動做好了沒 我跟他說做好了喔 他說再麻煩你回電給他 謝謝
+
+--> 宇欣 昨天有點忙沒說 因為這件的資料異動指令 我並沒有在執行前看完,所以沒讓你回user,下次user打來問的話,"要說做好了,但還在確認資料中",如果我沒有事先交待你的話,那麼請他留電就好了
+涂宇欣 下午 02:26
+好的
+此交談內容已儲存在 Lync 的 [交談] 索引標籤中以及 Outlook 的 [交談記錄] 資料夾中。
+涂宇欣 下午 02:45
+靜怡 剛剛晉慈打來詢問有關於稅檔產生規則的問題，他詢問說因下列兩個會科為外國人的部分，問說會不會寫入稅檔，這個問題我再找時間做釐清
+
+
+63300306材料用品-獎勵費-競賽獎勵金(外),
+
+63300406材料用品-獎勵費-競賽獎勵品(外)
+
+吳靜怡 下午 02:46
+這2個會科很久了
+問他 稅檔從來都沒有這2筆資料嗎
+涂宇欣 下午 02:47
+好
+吳靜怡 下午 02:52
+匯回款項的部份,跟因貸方問題而沒有寫入稅檔的問題一樣,之前有用defect處理,修改過1次程式,查查看上次defect是如何處理,借貸方判斷的程式 是否沒有一致?
+涂宇欣 下午 02:53
+好
+此交談內容已儲存在 Lync 的 [交談] 索引標籤中以及 Outlook 的 [交談記錄] 資料夾中。
+吳靜怡 下午 03:16
+Dear,靜怡 
+
+晉慈後來有反應會計科目62080703於C1.5.1建立申請單，可以正常寫入稅檔。請我比較該會科62080703在功能C1.5.9時無法寫入的差異。
+
+測試後發現C1.5.1建立的申請單會正常寫入稅檔是因在日結時抓取TBEXP_GENERAL_EXP裡的所得人證號並寫入稅檔相關欄位的原因；
+
+而C1.5.9無法寫入稅檔是因在日結時抓取的是貸方分路的所得人證號，而該欄位為空才造成沒有寫入稅檔。
+
+所以不只廠商有問題,匯回款項也有問題
+涂宇欣 下午 03:26
+對 
+吳靜怡 下午 03:27
+廠商的程式寫在哪一支?
+滙回款項的程式寫在哪一支?
+找一下
+涂宇欣 下午 03:28
+好
+吳靜怡 下午 03:29
+廠商的程式寫在哪一支?-->這是已經知道的程式,找到匯回款項的程式後寄給我
+涂宇欣 下午 03:32
+好
