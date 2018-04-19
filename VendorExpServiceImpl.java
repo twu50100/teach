@@ -484,9 +484,9 @@ public class VendorExpServiceImpl extends BaseServiceImpl<VendorExp, String, Ven
 					entryC.setAccTitle(title.getWithhold());
 					entryC.setEntryType(facade.getEntryTypeService().findEntryTypeByEntryTypeCode(EntryTypeCode.TYPE_2_4));
 					entryC.setAmt(facade.getAccTitleService().calculateTaxAmt(title, expEntry.getAmt(), false));
-					entryC.setIncomeId(exp.getVendor().getVendorCompId());
+					entryC.setIncomeId(incomeId);
 					entryC.setIncomeIdType(incomeIdTypeCode.getCode());
-					if (BigDecimal.ZERO.compareTo(entryC.getAmt()) < 0) {
+					if (BigDecimal.ZERO.compareTo(entryC.getAmt())< 0) {
 						expEntry.setIncomeId(null);
 						withholdIncomeEntryList.add(entryC);
 					}
@@ -495,9 +495,10 @@ public class VendorExpServiceImpl extends BaseServiceImpl<VendorExp, String, Ven
 				}
 				// DEFECT_5038_92稅檔不全62080703 EC0416 20180403 start
 				// 如果會計科目為62080703維持費用-勞務費-其他勞務費(92所得)則須把所得人證號相關欄位寫入借方
-			} else if ("62080703".equals(expEntry.getAccTitle().getCode())) {
+			} else if ("62080703".equals(expEntry.getAccTitle().getCode())&&EntryTypeCode.TYPE_2_3.getValue().equals(expEntry.getEntryType().getValue())) {
 				IncomeUser incomeUser = null;
 				IncomeIdTypeCode incomeIdTypeCode = IncomeIdTypeCode.IDENTITY_ID;
+				AccTitle title = facade.getAccTitleService().findByCode(expEntry.getAccTitle().getCode());
 				// 先查身分證字號
 				incomeUser = facade.getIncomeUserService().findIncomeUser(incomeIdTypeCode, incomeId);
 				if (null == incomeUser) {
@@ -512,20 +513,13 @@ public class VendorExpServiceImpl extends BaseServiceImpl<VendorExp, String, Ven
 					// ExpRuntimeException顯示《請先於UC10.8.4所得人資料維護功能建立該所得人資料》訊息
 					throw new ExpRuntimeException(ErrorCode.C10097);
 				}
-				 if (EntryTypeCode.TYPE_2_3.getValue().equals(expEntry.getEntryType().getValue())) {
-				Entry entryC = new Entry();
-				entryC.setAccTitle(expEntry.getAccTitle());
-				entryC.setAmt(expEntry.getAmt());
-				entryC.setIncomeId(exp.getVendor().getVendorCompId());
-				entryC.setIncomeIdType(incomeIdTypeCode.getCode());
-				//entryC.setEntryType(facade.getEntryTypeService().findEntryTypeByEntryTypeCode(EntryTypeCode.TYPE_2_3));
-				withholdIncomeEntryList.add(entryC);
-				entryC = null;
-				 }
+			
+					expEntry.setIncomeId(incomeId);
+					expEntry.setIncomeIdType(incomeIdTypeCode.getCode());
 				
-
-			} else if (EntryTypeCode.TYPE_2_3.getValue().equals(expEntry.getEntryType().getValue())&&!"62080703".equals(expEntry.getAccTitle().getCode())) {
-              // DEFECT_5038_92稅檔不全62080703 EC0416 20180403 end
+					
+				} else if (EntryTypeCode.TYPE_2_3.getValue().equals(expEntry.getEntryType().getValue()) && !"62080703".equals(expEntry.getAccTitle().getCode())) {
+				// DEFECT_5038_92稅檔不全62080703 EC0416 20180403 end
 				BigDecimal taxAmt = facade.getAccTitleService().calculateTaxAmt(expEntry.getAccTitle(), expEntry.getAmt(), false);
 				if (BigDecimal.ZERO.compareTo(taxAmt) < 0 && null != expEntry.getAccTitle().getWithhold()) {
 					Entry entryC = new Entry();
@@ -534,6 +528,7 @@ public class VendorExpServiceImpl extends BaseServiceImpl<VendorExp, String, Ven
 					entryC.setEntryType(facade.getEntryTypeService().findEntryTypeByEntryTypeCode(EntryTypeCode.TYPE_2_4));
 					entryC.setIncomeId(exp.getVendor().getVendorCompId());
 					entryC.setIncomeIdType(IncomeIdTypeCode.COMP_ID.getCode());
+					
 					withholdIncomeEntryList.add(entryC);
 					entryC = null;
 				}
