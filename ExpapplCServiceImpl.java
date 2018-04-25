@@ -4384,9 +4384,10 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 		GroupCode groupCode = GroupCode.getByValue(loginUser.getGroup().getCode());
 
 		boolean isPowerGroup = true;
+		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
 		// defect4951_增加群組權限條件 CU3178 2018/1/25 START
 		// 為C1.6.10時，且不等於GroupCode的群組則存取設限
-		if (is1610 && !(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
+		if (!(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
 			// defect4951_增加群組權限條件 CU3178 2018/1/25 END
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -4394,7 +4395,7 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && isFindDepartmentCode) {
+		} else if (isFindDepartmentCode) {
 			// 不為C1.6.10時，且isFindDepartmentCode不等於true
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -4402,7 +4403,7 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && !MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
+		} else if (!MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
 			// 不為C1.6.10時，且中分類不能於H10
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -4411,6 +4412,7 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 
 			}
 		}
+		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
 
 		List<String> departmentCodes = null;
 		if (isFindDepartmentCode) {
@@ -4453,114 +4455,6 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 		}
 		return list;
 	}
-	
-	// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
-	public List<String> findByParams2(ApplStateEnum applStateEnum, MiddleTypeCode middleTypeCode, String applyUserCode, Calendar createDateStart, Calendar createDateEnd, boolean isFindDepartmentCode, boolean is1604) {
-		// 要查詢的申請單狀態
-		ApplStateCode applStateCode = null;
-
-		// 要排除查詢的申請單狀態
-		List<ApplStateCode> delApplStateCodeList = null;
-		// 申請單狀態
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1604 == true) {
-			applStateCode = ApplStateCode.APPLIED;
-		}
-
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1604 == false) {
-			applStateCode = ApplStateCode.TEMP;
-		}
-
-		if (ApplStateEnum.DELETE.equals(applStateEnum) && is1604 == true) {
-			applStateCode = ApplStateCode.DELETED;
-		}
-
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1604 == true) {
-			delApplStateCodeList = new ArrayList<ApplStateCode>();
-			delApplStateCodeList.add(ApplStateCode.APPLIED);
-			delApplStateCodeList.add(ApplStateCode.DELETED);
-		}
-
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1604 == false) {
-			delApplStateCodeList = new ArrayList<ApplStateCode>();
-			delApplStateCodeList.add(ApplStateCode.TEMP);
-			delApplStateCodeList.add(ApplStateCode.DELETED);
-		}
-
-		User loginUser = (User) AAUtils.getLoggedInUser();
-		List<Department> loginUserDepList = null;
-		GroupCode groupCode = GroupCode.getByValue(loginUser.getGroup().getCode());
-
-		boolean isPowerGroup = true;
-		
-		// 為C1.6.4時，且不等於GroupCode的群組則存取設限
-		if (is1604 && !(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
-		
-			isPowerGroup = false;
-			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
-			if (applyUser != null) {
-				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
-
-			}
-		} else if (!is1604 && isFindDepartmentCode) {
-			// 不為C1.6.4時，且isFindDepartmentCode不等於true
-			isPowerGroup = false;
-			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
-			if (applyUser != null) {
-				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
-
-			}
-		} else if (!is1604 && !MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
-			// 不為C1.6.10時，且中分類不能於H10
-			isPowerGroup = false;
-			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
-			if (applyUser != null) {
-				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
-
-			}
-		}
-
-		List<String> departmentCodes = null;
-		if (isFindDepartmentCode) {
-			Department loginDep = facade.getUserService().getLoggedInUser().getDepartment();
-			if (null == loginDep) {
-				StringBuffer sb = new StringBuffer();
-				sb.append(MessageUtils.getAccessor().getMessage("tw_com_skl_exp_kernel_model6_bo_User_department"));
-				sb.append(", " + MessageUtils.getAccessor().getMessage("tw_com_skl_exp_kernel_model6_bo_User"));
-				sb.append(":" + facade.getUserService().getLoggedInUser().getCode() + facade.getUserService().getLoggedInUser().getName());
-				throw new ExpRuntimeException(ErrorCode.A20002, new String[] { sb.toString() });
-			}
-			departmentCodes = new ArrayList<String>();
-			departmentCodes.add(loginDep.getCode());
-			// 找出本處與分處的單位代號
-			if (DepartmentLevelPropertyCode.C.getCode().equals(loginDep.getDepartmentLevelProperty().getCode())) {
-				if (null != loginDep.getDepartmentCost()) {
-					departmentCodes.add(loginDep.getDepartmentCost().getCode());
-				} else {
-					List<Department> list = facade.getDepartmentService().findDepartmentCostByCode(loginDep.getCode());
-					if (!CollectionUtils.isEmpty(list)) {
-						for (Department department : list) {
-							departmentCodes.add(department.getCode());
-						}
-					}
-				}
-			}
-		}
-
-		// 找出費用申請單
-		List<ExpapplC> dataList = getDao().findByParams(applStateCode, middleTypeCode, applyUserCode, createDateStart, createDateEnd, departmentCodes, delApplStateCodeList, loginUserDepList, loginUser, isPowerGroup);
-
-		if (CollectionUtils.isEmpty(dataList)) {
-			return null;
-		}
-
-		// 取出申請單號
-		List<String> list = new ArrayList<String>();
-		for (ExpapplC expapplC : dataList) {
-			list.add(expapplC.getExpApplNo());
-		}
-		return list;
-	}
-	// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
 
 	public BigDecimal caculateShouldRemitAmount(ExpapplC expapplC) {
 		BigDecimal amt = BigDecimal.ZERO;
@@ -5778,11 +5672,11 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 		// 要排除查詢的申請單狀態
 		List<ApplStateCode> delApplStateCodeList = null;
 		// 申請單狀態
-		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
+		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
 			applStateCode = ApplStateCode.APPLIED;
 		}
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
+
+		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
 			applStateCode = ApplStateCode.TEMP;
 		}
 
@@ -5790,27 +5684,27 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 			applStateCode = ApplStateCode.DELETED;
 		}
 
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
+		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
 			delApplStateCodeList = new ArrayList<ApplStateCode>();
 			delApplStateCodeList.add(ApplStateCode.APPLIED);
 			delApplStateCodeList.add(ApplStateCode.DELETED);
 		}
 
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
+		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
 			delApplStateCodeList = new ArrayList<ApplStateCode>();
 			delApplStateCodeList.add(ApplStateCode.TEMP);
 			delApplStateCodeList.add(ApplStateCode.DELETED);
 		}
-		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
 
 		User loginUser = (User) AAUtils.getLoggedInUser();
 		List<Department> loginUserDepList = null;
 		GroupCode groupCode = GroupCode.getByValue(loginUser.getGroup().getCode());
 
 		boolean isPowerGroup = true;
+		//DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
 		// defect4951_增加群組權限條件 CU3178 2018/1/25 START
 		// 為C1.6.10時，且不等於GroupCode的群組則存取設限
-		if (is1610 && !(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
+		if (!(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
 			// defect4951_增加群組權限條件 CU3178 2018/1/25 END
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -5818,7 +5712,7 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && isFindDepartmentCode) {
+		} else if (isFindDepartmentCode) {
 			// 不為C1.6.10時，且isFindDepartmentCode不等於true
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -5826,7 +5720,8 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && !MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
+		} else if (!MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
+			//DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
 			// 不為C1.6.10時，且中分類不能於H10
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -5973,12 +5868,11 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 		// 要排除查詢的申請單狀態
 		List<ApplStateCode> delApplStateCodeList = null;
 		// 申請單狀態
-		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
+		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
 			applStateCode = ApplStateCode.APPLIED;
 		}
 
-		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
+		if (ApplStateEnum.NOT_VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
 			applStateCode = ApplStateCode.TEMP;
 		}
 
@@ -5986,27 +5880,27 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 			applStateCode = ApplStateCode.DELETED;
 		}
 
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
+		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
 			delApplStateCodeList = new ArrayList<ApplStateCode>();
 			delApplStateCodeList.add(ApplStateCode.APPLIED);
 			delApplStateCodeList.add(ApplStateCode.DELETED);
 		}
 
-		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == false) {
+		if (ApplStateEnum.VERIFICATION_SEND.equals(applStateEnum) && is1610 == true) {
 			delApplStateCodeList = new ArrayList<ApplStateCode>();
 			delApplStateCodeList.add(ApplStateCode.TEMP);
 			delApplStateCodeList.add(ApplStateCode.DELETED);
 		}
-		// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
-
+		
 		User loginUser = (User) AAUtils.getLoggedInUser();
 		List<Department> loginUserDepList = null;
 		GroupCode groupCode = GroupCode.getByValue(loginUser.getGroup().getCode());
 
 		boolean isPowerGroup = true;
+		//DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
 		// defect4951_增加群組權限條件 CU3178 2018/1/25 START
 		// 為C1.6.10時，且不等於GroupCode的群組則存取設限
-		if (is1610 && !(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
+		if (!(GroupCode.ADMIN.equals(groupCode) || GroupCode.AUDITOR_FIRST_VERIFY.equals(groupCode) || GroupCode.AUDITOR_REVIEW.equals(groupCode) || GroupCode.AUDITOR_TAX.equals(groupCode) || GroupCode.AUDITOR_GENERAL.equals(groupCode) || GroupCode.GAE_GENERAL.equals(groupCode) || GroupCode.HUMAN_RESOURCE.equals(groupCode) || GroupCode.LEARNING.equals(groupCode) || GroupCode.AUDITOR_PM_REVIEW.equals(groupCode))) {
 			// defect4951_增加群組權限條件 CU3178 2018/1/25 END
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -6014,7 +5908,7 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && isFindDepartmentCode) {
+		} else if (isFindDepartmentCode) {
 			// 不為C1.6.10時，且isFindDepartmentCode不等於true
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);
@@ -6022,7 +5916,8 @@ public class ExpapplCServiceImpl extends BaseServiceImpl<ExpapplC, String, Expap
 				loginUserDepList = this.getFacade().getDepartmentService().findAllLevelDepartment(loginUser.getDepartment());
 
 			}
-		} else if (!is1610 && !MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
+		} else if (!MiddleTypeCode.CODE_H10.equals(middleTypeCode)) {
+			//DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
 			// 不為C1.6.10時，且中分類不能於H10
 			isPowerGroup = false;
 			User applyUser = this.getFacade().getUserService().findByCode(applyUserCode);

@@ -485,13 +485,11 @@ public class TrvlAndOvsaExpApplManagedBean extends TemplateDataTableManagedBean<
 			String classCode = (String) map.get("classCode");// 申請人員工代號
 			List<String> expApplNoList = new ArrayList<String>();
 			if (MiddleTypeCode.CODE_K20.equals(middleTypeCode)) {
-				// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 start
-				expApplNoList = getService().findByParamsLrn(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), true, paperNo, classCode);
+				expApplNoList = getService().findByParamsLrn(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), false, paperNo, classCode);
 			} else if (MiddleTypeCode.CODE_K10.equals(middleTypeCode)) {
-				expApplNoList = getService().findByParamsHRLrn(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), true, paperNo, classCode);
+				expApplNoList = getService().findByParamsHRLrn(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), false, paperNo, classCode);
 			} else {
-				expApplNoList = getService().findByParams2(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), true);
-				// DEFECT5059_國外差旅記錄無限制查詢權限問題 ,應以建單人為依據區分查詢權限 2018/4/24 end
+				expApplNoList = getService().findByParams(applStateEnum, middleTypeCode, applyUserCode, createDateStart, createDateEnd, !isPowerGroup(), false);
 			}
 			// RE201504572_優化研修差旅 CU3178 2015/12/18 END
 			// RE201602265_將舊有功能1.5.5移至1.5.4 CU3178 2016/7/7 END
