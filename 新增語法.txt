@@ -1,0 +1,11 @@
+ --E01.06預算同期差異說明表單
+ insert into tbexp_function values('E0106000-0000-0000-0000-000000000000','E01.06',
+'預算同期差異說明表單','/faces/kernel/bd/provisionbudget/BudgetDiffExplain/readBudgetDiffExplain.jsp',
+'E0100000-0000-0000-0000-000000000000',1,0,to_date('2018/5/16','YYYY/MM/DD'),
+'8770b65e-7ceb-4224-b97a-49e6d94f3b22',to_date('2018/5/16','YYYY/MM/DD'),
+'','',1);
+INSERT INTO tbexp_item (id,name,create_date,update_date,version_no)
+     VALUES ('10000000-E001-0006-0000-000000000001',
+               '/faces/kernel/bd/provisionbudget/BudgetDiffExplain/readBudgetDiffExplain.jsp', to_date('2018/5/16','YYYY/MM/DD'),'', 1);                          
+INSERT INTO tbexp_function_item_r (tbexp_function_id, tbexp_item_id)
+     VALUES ('E0106000-0000-0000-0000-000000000000','10000000-E001-0006-0000-000000000001');     
