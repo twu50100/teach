@@ -1,0 +1,1024 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using SKLI_ReminDBConn;
+using Remin.DataTransferObject;
+
+public partial class JCICAccount_AutoEnterAccount : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Label1.Visible = false;
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        #region 測試填資料用
+        //測試用
+        if (System.Configuration.ConfigurationManager.AppSettings["DegugTest"] != null)
+        {
+            Session["UserID"] = "ay3177";
+        }
+        #endregion
+
+        #region 檢查傳入資料
+        if (Session["UserID"] == null)
+        {
+            Response.Write("系統逾時，請重新登入");
+            Response.End();
+            return;
+        }
+        #endregion
+
+        #region 權限判斷
+        DBConn Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+
+        System.Text.StringBuilder sr = new System.Text.StringBuilder();
+        string strUserID = Session["UserID"].ToString().ToUpper();
+        sr.AppendFormat("Select UserStatus From {0}User_Info ", ConfigurationManager.AppSettings["NewTable"]);
+        sr.Append("Where UserID = '" + strUserID + "' ");
+        DataSet ds = Conn.GetRs(sr.ToString());
+        if (ds.Tables[0].Rows.Count == 0)
+        {
+            //無此User , 無法執行此功能
+            Response.Write("使用者不存在，請重新登入");
+            Response.End();
+            return;
+        }
+        #endregion
+    }
+
+    protected void btnEnterAccount_Click(object sender, EventArgs e)
+    {
+        System.Text.StringBuilder sr = new System.Text.StringBuilder();
+        DBConn Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+        sr.AppendFormat("Select * from {0}TBJCICMAIN", ConfigurationManager.AppSettings["NewTable"]);
+        sr.Append(" Order by CUSTIDN");
+        DataSet ds = Conn.GetRs(sr.ToString());
+
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string dYear = DateTime.Now.Year.ToString();
+                string dMonth = DateTime.Now.Month.ToString();
+                if (dMonth.Length < 2)
+                {
+                    dMonth = "0" + dMonth;
+                }
+                string dDay = DateTime.Now.Day.ToString();
+                if (dDay.Length < 2)
+                {
+                    dDay = "0" + dDay;
+                }
+
+                #region 計算入帳日期當期之應繳日
+
+                string strENTER_DATE = dYear + dMonth + dDay;
+                DateTime dt = new DateTime(int.Parse(strENTER_DATE.Substring(0, 4)), int.Parse(strENTER_DATE.Substring(4, 2)), int.Parse(strENTER_DATE.Substring(6, 2)));
+                string strYear = dt.Year.ToString();
+                string strMonth = dt.Month.ToString();
+                string strDate = dt.Day.ToString();
+                if (int.Parse(strDate) > 10 && int.Parse(strDate) < 32)
+                {
+                    strMonth = dt.AddMonths(1).Month.ToString();
+
+                    if (int.Parse(strMonth) == 1)
+                    {
+                        strMonth = "0" + strMonth;
+                        strYear = dt.AddYears(1).Year.ToString();
+                    }
+                    if (strMonth.Length < 2)
+                    {
+                        strMonth = "0" + strMonth;
+                    }
+
+                    strENTER_DATE = strYear + strMonth + "10";
+                }
+                else if (int.Parse(strDate) > 0 && int.Parse(strDate) < 10)
+                {
+                    if (strMonth.Length < 2)
+                    {
+                        strMonth = "0" + strMonth;
+                    }
+                    strENTER_DATE = strYear + strMonth + "10";
+                }
+                else
+                {
+                    strENTER_DATE = strENTER_DATE;
+                }
+                DateTime dt2 = new DateTime(int.Parse(strENTER_DATE.Substring(0, 4)), int.Parse(strENTER_DATE.Substring(4, 2)), int.Parse(strENTER_DATE.Substring(6, 2)));  //入帳日期當期之應繳日
+                string strNEXT_PAY_DATE = dr["NEXT_PAY_DATE"].ToString();
+                DateTime dt3 = new DateTime(int.Parse(strNEXT_PAY_DATE.Substring(0, 4)), int.Parse(strNEXT_PAY_DATE.Substring(4, 2)), int.Parse(strNEXT_PAY_DATE.Substring(6, 2))); //下次應繳日
+                #endregion
+
+                #region 計算 應繳金額_清償
+                double douAMT_BALANCE = double.Parse(dr["AMT_BALANCE"].ToString()); //主檔.協商本金餘額
+                string strPAY_INT_DATE = dr["PAY_INT_DATE"].ToString();
+                string strRate = dr["Rate"].ToString(); //計息條件%
+                DateTime dt4 = DateTime.ParseExact(strPAY_INT_DATE, "yyyyMMdd", null);  //繳息迄日
+                DateTime dt5 = DateTime.ParseExact(dYear + dMonth + dDay, "yyyyMMdd", null);    //入帳日期
+                TimeSpan tsDay = dt5 - dt4;
+                int dayCount = (int)tsDay.TotalDays;    //入帳日期-繳息迄日
+                double intAheadPayAmt = douAMT_BALANCE + douAMT_BALANCE * dayCount * double.Parse(strRate) / 100 / 365; //應繳金額_清償
+                #endregion
+
+                if (double.Parse(dr["TEMP_CREDIT"].ToString()) < 0)
+                {
+                    //主檔.暫收協商金額<0
+                    continue;
+                }
+                else if (double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString()) <= 0)
+                {
+                    //主檔.(暫收協商金額+累溢繳金額)<=0
+                    continue;
+                }
+                else if (double.Parse(dr["TEMP_CREDIT"].ToString()) <= 0 && (double.Parse(dr["PAT_OVER_AMT"].ToString()) < double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()) || dr["CustStatus"].ToString() == "3" || dt2 < dt3))
+                {
+                    //主檔.暫收協商金額<=0，且(累溢繳金額<期款)或(毀諾)或(入帳日期當期之應繳日<下次應繳日)
+                    continue;
+                }
+                else if (double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString()) >= intAheadPayAmt)
+                {
+                    //主檔.(暫收協商金額+累溢繳金額)>=(應繳金額_清償)
+                    continue;
+                }
+
+                #region 撈交易檔資料
+                //sr = new System.Text.StringBuilder();
+                sr.Remove(0, sr.Length);
+                sr.AppendFormat("Select * From {0}tbJCICBusiness ", ConfigurationManager.AppSettings["NewTable"]);
+                sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+
+                Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                DataSet ds2 = Conn.GetRs(sr.ToString());
+                #endregion
+
+                if (ds2.Tables[0].Rows.Count == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    if (dr["IsMaxBank"].ToString() == "Y")
+                    {
+                        ds2.Tables[0].Rows[0]["IsShare"] = "Y";
+                    }
+                    else
+                    {
+                        ds2.Tables[0].Rows[0]["IsShare"] = "N";
+                    }
+                    DateTime dt6 = new DateTime(int.Parse(dYear), int.Parse(dMonth), int.Parse(dDay)); //入帳日期
+                    DateTime dt7 = new DateTime(int.Parse(dr["STATUS_DATE"].ToString().Substring(0, 4)), int.Parse(dr["STATUS_DATE"].ToString().Substring(4, 2)), int.Parse(dr["STATUS_DATE"].ToString().Substring(6, 2))); //毀諾日期
+                    if (dr["CustStatus"].ToString() == "3" && dt6 > dt7)
+                    {
+                        ds2.Tables[0].Rows[0]["IsShare"] = "N";
+                    }
+                    if (ds2.Tables[0].Rows[0]["IsShare"].ToString() == "N")
+                    {
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat("Select * From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                        sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                        sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                        sr.Append(" And CREDIT_CODE = '458' ");
+
+                        Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                        DataSet ds3 = Conn.GetRs(sr.ToString());
+                        if (ds3.Tables[0].Rows.Count == 0)
+                        {
+                            continue;
+                        }
+                    }
+                //}
+
+                    #region 債權明細分攤列表
+                    //sr = new System.Text.StringBuilder();
+                    sr.Remove(0, sr.Length);
+                    sr.Append("Select CUSTIDN,CREDIT_CODE,PERIOD_AMT,'' as SHAREAMT,'' as tolSHAREAMT,CUM_SHARE_AMT ");
+                    sr.AppendFormat(" From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                    sr.Append(" Where CUSTIDN='" + dr["CUSTIDN"].ToString() + "'");
+                    sr.Append(" And RC_DATE='" + dr["RC_DATE"].ToString() + "'");
+                    sr.Append(" Order by CUSTIDN");
+                    Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                    DataSet ds4 = Conn.GetRs(sr.ToString());
+                    ds4.Tables[0].Columns[3].ReadOnly = false;
+                    ds4.Tables[0].Columns[3].MaxLength = 10;
+                    ds4.Tables[0].Columns[4].ReadOnly = false;
+                    ds4.Tables[0].Columns[4].MaxLength = 10;
+                    if (ds4.Tables[0].Rows.Count == 0)
+                    {
+                        ds4.Tables[0].Columns[0].AllowDBNull = true;
+                        ds4.Tables[0].Columns[1].AllowDBNull = true;
+                        ds4.Tables[0].Rows.Add(ds4.Tables[0].NewRow());
+                    }
+                    else
+                    {
+                        double tolPeriodAmt = double.Parse(ds4.Tables[0].Compute("Sum(PERIOD_AMT)", "").ToString());    //總期款
+                        if (double.Parse(dr["TEMP_CREDIT"].ToString().Trim()) == tolPeriodAmt)  //暫收協商金額=總期款
+                        {
+                            for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                            {
+                                ds4.Tables[0].Rows[i]["SHAREAMT"] = ds4.Tables[0].Rows[i]["PERIOD_AMT"].ToString(); //分攤金額=期款
+                            }
+                        }
+                        else
+                        {
+                            //第一筆：(累計分攤金額+暫收協商金額)*期款/總期款
+                            //之後的：(累計分攤金額+暫收協商金額-前一家銀行之總分攤金額)*期款/(總期款-前一家銀行之期款)
+                            double tolAmt = 0;
+                            tolAmt = double.Parse(ds4.Tables[0].Compute("Sum(CUM_SHARE_AMT)", "").ToString()) + double.Parse(dr["TEMP_CREDIT"].ToString()); //累計分攤金額+暫收抵繳(Total)
+                            double strAmt = double.Parse(ds4.Tables[0].Compute("Sum(PERIOD_AMT)", "").ToString());   //總期款
+                            double tolShareAmt = Math.Round((tolAmt * double.Parse(ds4.Tables[0].Rows[0]["PERIOD_AMT"].ToString()) / strAmt), 0, MidpointRounding.AwayFromZero); //總分攤金額
+                            ds4.Tables[0].Rows[0]["tolSHAREAMT"] = tolShareAmt; //總分攤金額
+                            double shareAmt = tolShareAmt - double.Parse(ds4.Tables[0].Rows[0]["CUM_SHARE_AMT"].ToString()); //總分攤金額-累計分攤金額
+                            ds4.Tables[0].Rows[0]["SHAREAMT"] = shareAmt;    //此次分攤金額(第一筆)
+                            for (int i = 1; i < ds4.Tables[0].Rows.Count; i++)
+                            {
+                                double strtolAmt = 0;
+                                //double sumtolSHAREAMT = double.Parse(ds4.Tables[0].Compute("Sum(tolSHAREAMT)", "rownum< '"+i.ToString()+"'").ToString());
+                                //tolShareAmt = Math.Round(((tolAmt - sumtolSHAREAMT) * double.Parse(ds4.Tables[0].Rows[i]["PERIOD_AMT"].ToString()) / strtolAmt), 0, MidpointRounding.AwayFromZero); //暫收分攤金額(A)
+                                double delSHAREAMT = 0;
+                                for (int j = 0; j < i; j++)
+                                {
+                                    delSHAREAMT = delSHAREAMT + double.Parse(ds4.Tables[0].Rows[j]["tolSHAREAMT"].ToString());
+                                    strtolAmt = strtolAmt + double.Parse(ds4.Tables[0].Rows[j]["PERIOD_AMT"].ToString()); //前i-1期期款總和
+                                }
+                                tolShareAmt = Math.Round(((tolAmt - delSHAREAMT) * double.Parse(ds4.Tables[0].Rows[i]["PERIOD_AMT"].ToString()) / (strAmt - strtolAmt)), 0, MidpointRounding.AwayFromZero); //暫收分攤金額(A)
+                                ds4.Tables[0].Rows[i]["tolSHAREAMT"] = tolShareAmt;
+                                shareAmt = tolShareAmt - double.Parse(ds4.Tables[0].Rows[i]["CUM_SHARE_AMT"].ToString());
+                                ds4.Tables[0].Rows[i]["SHAREAMT"] = shareAmt;
+                            }
+                        }
+                    }
+                    #endregion
+
+                    if (dr["CustStatus"].ToString() != "3") //非毀諾
+                    {
+                        #region 入帳日期當期之應繳日>=下次應繳日，且(暫收協商金額+累溢繳金額)>=期款
+                        if (dt2 >= dt3 && double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString()) >= double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()))
+                        {
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICBusiness", ConfigurationManager.AppSettings["NewTable"]);
+                            DataSet dsBus = Conn.GetRs(sr.ToString());
+
+                            #region 新增債協交易檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat(" Insert Into {0}tbJCICBusiness  (", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" CustIDN");
+                            sr.Append(" ,RC_DATE");
+                            sr.Append(" ,ENTER_DATE");
+                            sr.Append(" ,ACCOUNT_DATE");
+                            sr.Append(" ,BUSINESS_CODE");
+                            sr.Append(" ,BUSINESS_KIND");
+                            sr.Append(" ,AMEND_CODE");
+                            sr.Append(" ,TEMP_CREDIT");
+                            sr.Append(" ,TEMP_CREDIT_LOAN_AMT");
+                            sr.Append(" ,TEMP_CREDIT_OVER_AMT");
+                            sr.Append(" ,WRITEOFF_INT");
+                            sr.Append(" ,WRITEOFF_AMT");
+                            sr.Append(" ,PAY_START_DATE");
+                            sr.Append(" ,PAY_INT_DATE");
+                            sr.Append(" ,INTO_OVER_AMT");
+                            sr.Append(" ,PAY_PERIOD");
+                            sr.Append(" ,AMT_BALANCE");
+                            sr.Append(" ,IsShare");
+                            sr.Append(" ,SUMMON_NUM");
+                            sr.Append(" ,ModifyUserID");
+                            sr.Append(" ,lastupdatedate");
+                            sr.Append(" ) Values (");
+                            sr.Append(" ?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,SYSDATE");
+                            sr.Append(") ");
+
+                            System.Data.OleDb.OleDbCommand comm = Conn.GetSQLCommand(sr.ToString());
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["CustIDN"].ToString(); //債務人IDN
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["RC_DATE"].ToString(); //協商申請日
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay; //入帳日期
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay;//會計日期
+                            if (dsBus.Tables[0].Rows.Count == 0)
+                            {
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                            }
+                            else
+                            {
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat("Select max(BUSINESS_CODE) as BUSINESS_CODE From {0}tbJCICBusiness ", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" Where ACCOUNT_DATE='" + dYear + dMonth + dDay + "'");
+                                DataSet dsBus2 = Conn.GetRs(sr.ToString());
+                                if (dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString() == "")
+                                {
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                                }
+                                else
+                                {
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = int.Parse(dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString()) + 1; //交易序號(流水號)
+                                }
+                            }
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "2"; //交易別
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //訂正別
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //暫收抵繳
+                            string strTCOAmt = "";
+                            if (double.Parse(dr["TEMP_CREDIT"].ToString()) > double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()))
+                            {
+                                strTCOAmt = "0";
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = strTCOAmt;//溢繳抵繳
+                            }
+                            else
+                            {
+                                strTCOAmt = Convert.ToString(double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()) - double.Parse(dr["TEMP_CREDIT"].ToString()));
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = strTCOAmt; //溢繳抵繳
+                            }
+                            double strInt = Math.Round(double.Parse(dr["AMT_BALANCE"].ToString()) * double.Parse(dr["RATE"].ToString()) / 100 / 12, 0, MidpointRounding.AwayFromZero);   //沖銷利息
+                            double strAmt = double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()) - strInt;   //沖銷本金
+
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = strInt.ToString();   //沖銷利息
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = strAmt.ToString();   //沖銷本金
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["PAY_INT_DATE"].ToString(); //繳息起日
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["NEXT_PAY_DATE"].ToString(); //繳息迄日(下次應繳日)
+                            double strIOAmt = Math.Round(double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(strTCOAmt) - double.Parse(dr["TOTAL_PERIOD_AMT"].ToString()));
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = strIOAmt.ToString(); //轉入溢繳
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1";  //繳款期數
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = double.Parse(dr["AMT_BALANCE"].ToString()) - strAmt;   //協商本金餘額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds2.Tables[0].Rows[0]["IsShare"].ToString();  //是否分攤
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "";   //傳票號碼
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "F224601758";   //異動人員ID
+                            Conn.DBExecSQL(comm);
+                            #endregion
+
+                            #region Check交易檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICBusiness ", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                            sr.Append(" And ENTER_DATE = '" + dYear + dMonth + dDay + "'");
+                            sr.Append(" And BUSINESS_KIND = '2'");
+
+                            Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                            DataSet ds5 = Conn.GetRs(sr.ToString());
+                            #endregion
+
+                            if (ds2.Tables[0].Rows[0]["IsShare"] == "Y")
+                            {
+                                for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                                {
+                                    if (double.Parse(dr["TEMP_CREDIT"].ToString()) != 0)
+                                    {
+                                        # region 新增金額分攤檔資料
+                                        sr = new System.Text.StringBuilder();
+                                        sr.Append(" Insert Into tbJCICAmtShare  (");
+                                        sr.Append(" CustIDN");
+                                        sr.Append(" ,RC_DATE");
+                                        sr.Append(" ,ENTER_DATE");
+                                        sr.Append(" ,ACCOUNT_DATE");
+                                        sr.Append(" ,BUSINESS_CODE");
+                                        sr.Append(" ,CREDIT_CODE");
+                                        sr.Append(" ,SHARE_AMT");
+                                        sr.Append(" ) Values (");
+                                        sr.Append(" ?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(") ");
+                                        comm = Conn.GetSQLCommand(sr.ToString());
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["CUSTIDN"].ToString(); //債務人IDN
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["RC_DATE"].ToString(); //協商申請日
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay; //入帳日期
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ACCOUNT_DATE"].ToString();    //會計日期
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["BUSINESS_CODE"].ToString();    //交易序號
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString();  //債權機構代號
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["SHAREAMT"].ToString(); //分攤金額
+                                        Conn.DBExecSQL(comm);
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                    }
+                                }
+
+                                #region 撈債權分攤檔資料
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat("Select * From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+
+                                Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                                DataSet ds6 = Conn.GetRs(sr.ToString());
+                                #endregion
+
+                                if (ds6.Tables[0].Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                                    {
+                                        #region 更新債權分攤檔資料
+                                        //sr = new System.Text.StringBuilder();
+                                        sr.Remove(0, sr.Length);
+                                        sr.AppendFormat(" Update {0}tbJCICShare set CUM_SHARE_AMT = ?", ConfigurationManager.AppSettings["NewTable"]);
+                                        sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                        sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+                                        sr.Append(" And CREDIT_CODE = '" + ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString() + "'");
+
+                                        comm = Conn.GetSQLCommand(sr.ToString());
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = double.Parse(ds6.Tables[0].Rows[i]["CUM_SHARE_AMT"].ToString()) + double.Parse(ds4.Tables[0].Rows[i]["SHAREAMT"].ToString()); //累計分攤金額
+                                        Conn.DBExecSQL(comm);
+                                        #endregion
+                                    }
+                                }
+                            }
+
+                            #region 撈51檔延期繳款資料
+
+                            string strNEXT_PAY_DATE2 = dr["NEXT_PAY_DATE"].ToString();
+                            DateTime dTime1 = new DateTime(int.Parse(strNEXT_PAY_DATE2.Substring(0, 4)), int.Parse(strNEXT_PAY_DATE2.Substring(4, 2)), int.Parse(strNEXT_PAY_DATE2.Substring(6, 2)));  //下次應繳日
+                            dTime1 = dTime1.AddMonths(1);
+
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICZ051", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                            sr.Append(" And DELAY_YM = '" + dTime1.ToString("yyyyMMdd").Substring(0, 6) + "' ");
+
+                            Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                            DataSet ds7 = Conn.GetRs(sr.ToString());
+                            #endregion
+
+                            #region 更新主檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat(" Update {0}tbJCICMain set PAY_INT_DATE = ?", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" ,NEXT_PAY_DATE= ?");
+                            sr.Append(" ,PAY_PERIOD= ?");
+                            sr.Append(" ,AMT_BALANCE= ?");
+                            sr.Append(" ,PAT_OVER_AMT= ?");
+                            sr.Append(" ,TEMP_CREDIT= ?");
+                            sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+
+                            comm = Conn.GetSQLCommand(sr.ToString());
+                            if (ds7.Tables[0].Rows.Count == 0)
+                            {
+                                dt = dt.AddMonths(1);
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["NEXT_PAY_DATE"].ToString(); //繳息迄日
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dTime1.ToString("yyyyMMdd"); //下次應繳日
+                            }
+                            else if (ds7.Tables[0].Rows.Count > 0)
+                            {
+                                dt = dt.AddMonths(2);
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["NEXT_PAY_DATE"].ToString(); //繳息迄日
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dTime1.ToString("yyyyMMdd"); //下次應繳日
+                            }
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = Convert.ToString(int.Parse(dr["PAY_PERIOD"].ToString()) + 1); //已繳期數
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = Convert.ToDouble(double.Parse(dr["AMT_BALANCE"].ToString()) - strAmt); //協商本金餘額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = Convert.ToDouble(double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString()) - double.Parse(dr["TOTAL_PERIOD_AMT"].ToString())); //累計溢繳金額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                            Conn.DBExecSQL(comm);
+                            #endregion
+                        }
+                        #endregion
+
+                        #region 入帳日期當期之應繳日<下次應繳日，且(暫收協商金額)>0
+
+                        else if (double.Parse(dr["TEMP_CREDIT"].ToString()) > 0)
+                        {
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICBusiness", ConfigurationManager.AppSettings["NewTable"]);
+                            DataSet dsBus = Conn.GetRs(sr.ToString());
+
+                            #region 新增債協交易檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat(" Insert Into {0}tbJCICBusiness (", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" CustIDN");
+                            sr.Append(" ,RC_DATE");
+                            sr.Append(" ,ENTER_DATE");
+                            sr.Append(" ,ACCOUNT_DATE");
+                            sr.Append(" ,BUSINESS_CODE");
+                            sr.Append(" ,BUSINESS_KIND");
+                            sr.Append(" ,AMEND_CODE");
+                            sr.Append(" ,TEMP_CREDIT");
+                            sr.Append(" ,TEMP_CREDIT_LOAN_AMT");
+                            sr.Append(" ,TEMP_CREDIT_OVER_AMT");
+                            sr.Append(" ,WRITEOFF_INT");
+                            sr.Append(" ,WRITEOFF_AMT");
+                            sr.Append(" ,PAY_START_DATE");
+                            sr.Append(" ,PAY_INT_DATE");
+                            sr.Append(" ,INTO_OVER_AMT");
+                            sr.Append(" ,PAY_PERIOD");
+                            sr.Append(" ,AMT_BALANCE");
+                            sr.Append(" ,IsShare");
+                            sr.Append(" ,SUMMON_NUM");
+                            sr.Append(" ,ModifyUserID");
+                            sr.Append(" ,lastupdatedate");
+                            sr.Append(" ) Values (");
+                            sr.Append(" ?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,?");
+                            sr.Append(" ,SYSDATE");
+                            sr.Append(") ");
+
+                            System.Data.OleDb.OleDbCommand comm = Conn.GetSQLCommand(sr.ToString());
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["CustIDN"].ToString(); //債務人IDN
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["RC_DATE"].ToString(); //協商申請日
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay; //入帳日期
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay;//會計日期
+                            if (dsBus.Tables[0].Rows.Count == 0)
+                            {
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                            }
+                            else
+                            {
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat("Select max(BUSINESS_CODE) as BUSINESS_CODE From {0}tbJCICBusiness", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" Where ACCOUNT_DATE='" + dYear + dMonth + dDay + "'");
+                                DataSet dsBus2 = Conn.GetRs(sr.ToString());
+                                if (dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString() == "")
+                                {
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                                }
+                                else
+                                {
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = int.Parse(dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString()) + 1; //交易序號(流水號)
+                                }
+                            }
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "2"; //交易別
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //訂正別
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //暫收抵繳
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //溢繳抵繳
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //沖銷利息
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //沖銷本金
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ""; //繳息起日
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ""; //繳息迄日(下次應繳日)
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //轉入溢繳
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";  //繳款期數
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["AMT_BALANCE"].ToString();   //協商本金餘額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds2.Tables[0].Rows[0]["IsShare"].ToString();  //是否分攤
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "";   //傳票號碼
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "AY3177";   //異動人員ID
+                            Conn.DBExecSQL(comm);
+                            #endregion
+
+                            #region Check交易檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICBusiness ", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                            sr.Append(" And ENTER_DATE = '" + dYear + dMonth + dDay + "'");
+                            sr.Append(" And BUSINESS_KIND = '2'");
+
+                            Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                            DataSet ds5 = Conn.GetRs(sr.ToString());
+                            #endregion
+
+                            if (ds2.Tables[0].Rows[0]["IsShare"] == "Y")
+                            {
+                                for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                                {
+                                    if (double.Parse(dr["TEMP_CREDIT"].ToString()) != 0)
+                                    {
+                                        # region 新增金額分攤檔資料
+                                        sr = new System.Text.StringBuilder();
+                                        sr.Append(" Insert Into tbJCICAmtShare  (");
+                                        sr.Append(" CustIDN");
+                                        sr.Append(" ,RC_DATE");
+                                        sr.Append(" ,ENTER_DATE");
+                                        sr.Append(" ,ACCOUNT_DATE");
+                                        sr.Append(" ,BUSINESS_CODE");
+                                        sr.Append(" ,CREDIT_CODE");
+                                        sr.Append(" ,SHARE_AMT");
+                                        sr.Append(" ) Values (");
+                                        sr.Append(" ?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(" ,?");
+                                        sr.Append(") ");
+                                        comm = Conn.GetSQLCommand(sr.ToString());
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["CUSTIDN"].ToString(); //債務人IDN
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["RC_DATE"].ToString(); //協商申請日
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ENTER_DATE"].ToString(); //入帳日期
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ACCOUNT_DATE"].ToString();    //會計日期
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["BUSINESS_CODE"].ToString();    //交易序號
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString();  //債權機構代號
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["SHAREAMT"].ToString(); //分攤金額
+                                        Conn.DBExecSQL(comm);
+
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                    }
+                                }
+
+                                #region 撈債權分攤檔資料
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat("Select * From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+
+                                Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                                DataSet ds6 = Conn.GetRs(sr.ToString());
+                                #endregion
+
+                                if (ds6.Tables[0].Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                                    {
+                                        #region 更新債權分攤檔資料
+                                        //sr = new System.Text.StringBuilder();
+                                        sr.Remove(0, sr.Length);
+                                        sr.AppendFormat(" Update {0}tbJCICShare set CUM_SHARE_AMT = ?", ConfigurationManager.AppSettings["NewTable"]);
+                                        sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                        sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+                                        sr.Append(" And CREDIT_CODE = '" + ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString() + "'");
+
+                                        comm = Conn.GetSQLCommand(sr.ToString());
+
+                                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = double.Parse(ds6.Tables[0].Rows[i]["CUM_SHARE_AMT"].ToString()) + double.Parse(ds4.Tables[0].Rows[i]["SHAREAMT"].ToString()); //累計分攤金額
+                                        Conn.DBExecSQL(comm);
+                                        #endregion
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                # region 新增金額分攤檔資料
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat(" Insert Into {0}tbJCICAmtShare  (", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" CustIDN");
+                                sr.Append(" ,RC_DATE");
+                                sr.Append(" ,ENTER_DATE");
+                                sr.Append(" ,ACCOUNT_DATE");
+                                sr.Append(" ,BUSINESS_CODE");
+                                sr.Append(" ,CREDIT_CODE");
+                                sr.Append(" ,SHARE_AMT");
+                                sr.Append(" ) Values (");
+                                sr.Append(" ?");
+                                sr.Append(" ,?");
+                                sr.Append(" ,?");
+                                sr.Append(" ,?");
+                                sr.Append(" ,?");
+                                sr.Append(" ,?");
+                                sr.Append(" ,?");
+                                sr.Append(") ");
+                                comm = Conn.GetSQLCommand(sr.ToString());
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["CUSTIDN"].ToString(); //債務人IDN
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["RC_DATE"].ToString(); //協商申請日
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ENTER_DATE"].ToString(); //入帳日期
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ACCOUNT_DATE"].ToString();    //會計日期
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["BUSINESS_CODE"].ToString();    //交易序號
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "458";  //債權機構代號
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //分攤金額(暫收抵繳)
+                                Conn.DBExecSQL(comm);
+                                #endregion
+
+                                #region 撈債權分攤檔資料
+                                //sr = new System.Text.StringBuilder();
+                                sr.Remove(0, sr.Length);
+                                sr.AppendFormat("Select * From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                                sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+                                sr.Append(" And CREDIT_CODE = '458' ");
+
+                                Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                                DataSet dsShare = Conn.GetRs(sr.ToString());
+                                #endregion
+
+                                if (dsShare.Tables[0].Rows.Count > 0)
+                                {
+                                    #region 更新債權分攤檔資料
+                                    //sr = new System.Text.StringBuilder();
+                                    sr.Remove(0, sr.Length);
+                                    sr.AppendFormat(" Update {0}tbJCICShare set CUM_SHARE_AMT = ?", ConfigurationManager.AppSettings["NewTable"]);
+                                    sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                    sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+                                    sr.Append(" And CREDIT_CODE = '458'");
+
+                                    comm = Conn.GetSQLCommand(sr.ToString());
+
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = double.Parse(dsShare.Tables[0].Rows[0]["CUM_SHARE_AMT"].ToString()) + double.Parse(dr["TEMP_CREDIT"].ToString()); //累計分攤金額
+                                    Conn.DBExecSQL(comm);
+                                    #endregion
+                                }
+                            }
+
+                            #region 撈51檔延期繳款資料
+
+                            string strNEXT_PAY_DATE3 = dr["NEXT_PAY_DATE"].ToString();
+                            DateTime dTime2 = new DateTime(int.Parse(strNEXT_PAY_DATE3.Substring(0, 4)), int.Parse(strNEXT_PAY_DATE3.Substring(4, 2)), int.Parse(strNEXT_PAY_DATE3.Substring(6, 2)));  //下次應繳日
+
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select * From {0}tbJCICZ051", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                            sr.Append(" And DELAY_YM = '" + (dTime2.AddMonths(1)).ToString("yyyyMMdd").Substring(0, 6) + "' ");
+
+                            Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                            DataSet ds7 = Conn.GetRs(sr.ToString());
+                            #endregion
+
+                            #region 更新主檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat(" Update {0}tbJCICMain set TEMP_CREDIT = ?", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" ,PAT_OVER_AMT = ?");
+                            sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+
+                            comm = Conn.GetSQLCommand(sr.ToString());
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = Convert.ToDouble(double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString())); //累計溢繳金額
+                            Conn.DBExecSQL(comm);
+                            #endregion
+                        }
+                        #endregion
+                        Label1.Visible = true;
+                    }
+                    else
+                    {
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat("Select * From {0}tbJCICBusiness", ConfigurationManager.AppSettings["NewTable"]);
+                        DataSet dsBus = Conn.GetRs(sr.ToString());
+
+                        #region 新增債協交易檔資料
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat(" Insert Into {0}tbJCICBusiness ( ", ConfigurationManager.AppSettings["NewTable"]);
+                        sr.Append(" CustIDN");
+                        sr.Append(" ,RC_DATE");
+                        sr.Append(" ,ENTER_DATE");
+                        sr.Append(" ,ACCOUNT_DATE");
+                        sr.Append(" ,BUSINESS_CODE");
+                        sr.Append(" ,BUSINESS_KIND");
+                        sr.Append(" ,AMEND_CODE");
+                        sr.Append(" ,TEMP_CREDIT");
+                        sr.Append(" ,TEMP_CREDIT_LOAN_AMT");
+                        sr.Append(" ,TEMP_CREDIT_OVER_AMT");
+                        sr.Append(" ,WRITEOFF_INT");
+                        sr.Append(" ,WRITEOFF_AMT");
+                        sr.Append(" ,PAY_START_DATE");
+                        sr.Append(" ,PAY_INT_DATE");
+                        sr.Append(" ,INTO_OVER_AMT");
+                        sr.Append(" ,PAY_PERIOD");
+                        sr.Append(" ,AMT_BALANCE");
+                        sr.Append(" ,IsShare");
+                        sr.Append(" ,SUMMON_NUM");
+                        sr.Append(" ,ModifyUserID");
+                        sr.Append(" ,lastupdatedate");
+                        sr.Append(" ) Values (");
+                        sr.Append(" ?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,?");
+                        sr.Append(" ,SYSDATE");
+                        sr.Append(") ");
+
+                        System.Data.OleDb.OleDbCommand comm = Conn.GetSQLCommand(sr.ToString());
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["CustIDN"].ToString(); //債務人IDN
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["RC_DATE"].ToString(); //協商申請日
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay; //入帳日期
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dYear + dMonth + dDay;//會計日期
+                        if (dsBus.Tables[0].Rows.Count == 0)
+                        {
+                            comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                        }
+                        else
+                        {
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select max(BUSINESS_CODE) as BUSINESS_CODE From {0}tbJCICBusiness", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where ACCOUNT_DATE='" + dYear + dMonth + dDay + "'");
+                            DataSet dsBus2 = Conn.GetRs(sr.ToString());
+                            if (dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString() == "")
+                            {
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "1"; //交易序號(流水號)
+                            }
+                            else
+                            {
+                                comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = int.Parse(dsBus2.Tables[0].Rows[0]["BUSINESS_CODE"].ToString()) + 1; //交易序號(流水號)
+                            }
+                        }
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "2"; //交易別
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //訂正別
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //暫收抵繳
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //溢繳抵繳
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //沖銷利息
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";   //沖銷本金
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ""; //繳息起日
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ""; //繳息迄日(下次應繳日)
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["TEMP_CREDIT"].ToString(); //轉入溢繳
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0";  //繳款期數
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = dr["AMT_BALANCE"].ToString();   //協商本金餘額
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds2.Tables[0].Rows[0]["IsShare"].ToString();  //是否分攤
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "";   //傳票號碼
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "AY3177";   //異動人員ID
+
+                        Conn.DBExecSQL(comm);
+                        #endregion
+
+                        #region Check交易檔資料
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat("Select * From {0}tbJCICBusiness ", ConfigurationManager.AppSettings["NewTable"]);
+                        sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                        sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                        sr.Append(" And ENTER_DATE = '" + dYear + dMonth + dDay + "'");
+                        sr.Append(" And BUSINESS_KIND = '2'");
+
+                        Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                        DataSet ds5 = Conn.GetRs(sr.ToString());
+                        #endregion
+
+                        if (ds2.Tables[0].Rows[0]["IsShare"] == "Y")
+                        {
+                            for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                            {
+                                if (double.Parse(dr["TEMP_CREDIT"].ToString()) != 0)
+                                {
+                                    # region 新增金額分攤檔資料
+                                    //sr = new System.Text.StringBuilder();
+                                    sr.Remove(0, sr.Length);
+                                    sr.AppendFormat(" Insert Into {0}tbJCICAmtShare ( ", ConfigurationManager.AppSettings["NewTable"]);
+                                    sr.Append(" CustIDN");
+                                    sr.Append(" ,RC_DATE");
+                                    sr.Append(" ,ENTER_DATE");
+                                    sr.Append(" ,ACCOUNT_DATE");
+                                    sr.Append(" ,BUSINESS_CODE");
+                                    sr.Append(" ,CREDIT_CODE");
+                                    sr.Append(" ,SHARE_AMT");
+                                    sr.Append(" ) Values (");
+                                    sr.Append(" ?");
+                                    sr.Append(" ,?");
+                                    sr.Append(" ,?");
+                                    sr.Append(" ,?");
+                                    sr.Append(" ,?");
+                                    sr.Append(" ,?");
+                                    sr.Append(" ,?");
+                                    sr.Append(") ");
+                                    comm = Conn.GetSQLCommand(sr.ToString());
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["CUSTIDN"].ToString(); //債務人IDN
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["RC_DATE"].ToString(); //協商申請日
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ENTER_DATE"].ToString(); //入帳日期
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["ACCOUNT_DATE"].ToString();    //會計日期
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds5.Tables[0].Rows[0]["BUSINESS_CODE"].ToString();    //交易序號
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString();  //債權機構代號
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = ds4.Tables[0].Rows[i]["SHAREAMT"].ToString(); //分攤金額
+                                    Conn.DBExecSQL(comm);
+                                    #endregion
+                                }
+                                else
+                                {
+                                }
+                            }
+
+                            #region 撈債權分攤檔資料
+                            //sr = new System.Text.StringBuilder();
+                            sr.Remove(0, sr.Length);
+                            sr.AppendFormat("Select  * From {0}tbJCICShare ", ConfigurationManager.AppSettings["NewTable"]);
+                            sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                            sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+
+                            Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                            DataSet ds6 = Conn.GetRs(sr.ToString());
+                            #endregion
+
+                            if (ds6.Tables[0].Rows.Count > 0)
+                            {
+                                for (int i = 0; i < ds4.Tables[0].Rows.Count; i++)
+                                {
+                                    #region 更新債權分攤檔資料
+                                    //sr = new System.Text.StringBuilder();
+                                    sr.Remove(0, sr.Length);
+                                    sr.AppendFormat(" Update {0}tbJCICShare set CUM_SHARE_AMT = ? ", ConfigurationManager.AppSettings["NewTable"]);
+                                    sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                                    sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+                                    sr.Append(" And CREDIT_CODE = '" + ds4.Tables[0].Rows[i]["CREDIT_CODE"].ToString() + "'");
+
+                                    comm = Conn.GetSQLCommand(sr.ToString());
+
+                                    comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = double.Parse(ds6.Tables[0].Rows[i]["CUM_SHARE_AMT"].ToString()) + double.Parse(ds4.Tables[0].Rows[i]["SHAREAMT"].ToString()); //累計分攤金額
+                                    Conn.DBExecSQL(comm);
+                                    #endregion
+                                }
+                            }
+                        }
+                        else
+                        {
+                        }
+
+                        #region 撈51檔延期繳款資料
+                        string strNEXT_PAY_DATE4 = dr["NEXT_PAY_DATE"].ToString();
+                        DateTime dTime3 = new DateTime(int.Parse(strNEXT_PAY_DATE4.Substring(0, 4)), int.Parse(strNEXT_PAY_DATE4.Substring(4, 2)), int.Parse(strNEXT_PAY_DATE4.Substring(6, 2)));  //下次應繳日
+
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat("Select * From {0}tbJCICZ051 ", ConfigurationManager.AppSettings["NewTable"]);
+                        sr.Append(" Where CUSTIDN = '" + dr["CUSTIDN"].ToString() + "' ");
+                        sr.Append(" And RC_DATE = '" + dr["RC_DATE"].ToString() + "' ");
+                        sr.Append(" And DELAY_YM = '" + (dTime3.AddMonths(1)).ToString("yyyyMMdd").Substring(0, 6) + "' ");
+
+                        Conn = new DBConn(DBDesc.SKLI_Oracle_ReminDB);
+                        DataSet ds7 = Conn.GetRs(sr.ToString());
+                        #endregion
+
+                        #region 更新主檔資料
+                        //sr = new System.Text.StringBuilder();
+                        sr.Remove(0, sr.Length);
+                        sr.AppendFormat(" Update {0}tbJCICMain set TEMP_CREDIT = ? ", ConfigurationManager.AppSettings["NewTable"]);
+                        sr.Append(" ,PAT_OVER_AMT = ?");
+                        sr.Append(" Where CUSTIDN = '" + ds5.Tables[0].Rows[0]["CUSTIDN"].ToString() + "' ");
+                        sr.Append(" And RC_DATE = '" + ds5.Tables[0].Rows[0]["RC_DATE"].ToString() + "' ");
+
+                        comm = Conn.GetSQLCommand(sr.ToString());
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = "0"; //暫收協商金額
+                        comm.Parameters.Add("", System.Data.OleDb.OleDbType.VarWChar).Value = Convert.ToDouble(double.Parse(dr["TEMP_CREDIT"].ToString()) + double.Parse(dr["PAT_OVER_AMT"].ToString())); //累計溢繳金額
+                        Conn.DBExecSQL(comm);
+
+                        #endregion
+                        Label1.Visible = true;
+                    }
+                }
+            }
+        }
+    }
+}
