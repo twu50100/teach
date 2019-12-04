@@ -273,9 +273,10 @@ begin
 			select
 				CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
 				,#TempLOAN.LoanKey
+				,#TempLOAN.CaseNO--放款案號
+				,m.CuseId				
 				,m.CustNo--借款人戶號
 				,m.CustName--借款人姓名
-				,#TempLOAN.CaseNO--放款案號
 				,#TempLOAN.ApproveDate as ApproveDate--核貸日
 				,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額				
 				,MAX(#TempLNLMSP.LMSLLD) as LMSLLD  --撥款日
@@ -307,9 +308,10 @@ begin
 			select
 				CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
 				,#TempLOAN.LoanKey
+                                ,#TempLOAN.CaseNO--放款案號
+                                ,m.CuseId
 				,main.CustNo--借款人戶號
 				,main.CustName--借款人姓名
-				,#TempLOAN.CaseNO--放款案號
 				,#TempLOAN.ApproveDate as ApproveDate--核貸日
 				,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額					
 				,''--核貸日
