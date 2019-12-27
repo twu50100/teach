@@ -1,0 +1,89 @@
+Imports System.Windows.Forms
+Imports System.Xml
+Imports System.Data.SqlClient
+Imports eLoan_Gateway
+Imports eLoan_Gateway.ClassLib
+Imports System.Net   'Web
+Imports System.IO    'Files
+Imports System.Object
+Imports System.Text
+Imports Microsoft.Practices.EnterpriseLibrary.Data
+Imports System.Data.Common
+
+Module eLoanInsCheckData
+    Private g_objSettings As ClassLib.Settings = Nothing
+    Private g_strLogPath As String = Nothing
+    Private g_writeLog As eLoan_Gateway.ClassLib.WriteLog
+    Private g_strDBConnEloanString As String = Nothing
+    Private NewFilePath As String = Nothing
+    Private g_moDB_Loan As Database = Nothing
+    Private g_strPutFilePath As String = Nothing
+    Private FtpFilePath As String = Nothing
+    Private ftpID As String = Nothing
+    Private ftpPW As String = Nothing
+    Sub Main()
+        'eLoan資料庫連線字串
+        g_objSettings = New ClassLib.Settings(Application.StartupPath)
+
+        Try
+            g_strPutFilePath = CStr(g_objSettings.ReadSetting("PutFilePath"))
+            g_strDBConnEloanString = CStr(g_objSettings.ReadSetting("DBConnString_LOAN"))
+            FtpFilePath = CStr(g_objSettings.ReadSetting("EFBUploadIP"))
+            ftpID = CStr(g_objSettings.ReadSetting("EFBUploadUser"))
+            ftpPW = CStr(g_objSettings.ReadSetting("EFBUploadPwd"))
+            NewFilePath = CStr(g_objSettings.ReadSetting("NewFilePath"))
+            g_moDB_Loan = DBUtil.GetDB(g_strDBConnEloanString)
+            BackUpFile()
+            SetHouse_InsCheckData()
+            FtpUpload()
+        Catch ex As Exception
+            If g_writeLog IsNot Nothing Then
+                g_writeLog.WriteErrorLog("eLoanInsCheckData:Failed to Load Settings, " & ex.Message)
+            End If
+            Exit Sub
+        End Try
+    End Sub
+
+
+    Private Sub SetHouse_InsCheckData()
+        Dim dt As New DataTable
+        Dim strSQL As String = ""
+
+        Dim moDBCmdt As DbCommand = g_moDB_Loan.GetStoredProcCommand("[dbo].[USP_House_QryInsCheckData_eloan]")
+
+        Dim ds As DataSet = g_moDB_Loan.ExecuteDataSet(moDBCmdt)
+
+        ''匯出的路徑跟檔案
+        Dim sw As StreamWriter = New StreamWriter(g_strPutFilePath + "LOANLMSP.csv")
+        If ds.Tables.Count > 0 Then
+            dt = ds.Tables(0)
+            For i As Integer = 0 To dt.Rows.Count - 1
+                sw.WriteLine(dt.Rows(i)("txt"))
+            Next
+        End If
+
+        sw.Close()
+        moDBCmdt.Dispose()
+
+
+    End Sub
+
+    Private Sub FtpUpload()
+        Dim wc As WebClient = New WebClient()
+        wc.Credentials = New NetworkCredential(ftpID, ftpPW)
+        Dim FileData As Byte()
+        Dim di As DirectoryInfo = New DirectoryInfo(g_strPutFilePath)
+        For Each fi In di.GetFiles()
+            FileData = wc.UploadFile(FtpFilePath + fi.Name, g_strPutFilePath + fi.Name)
+        Next
+    End Sub
+
+    Private Sub BackUpFile()
+        Dim backFileName As String = New DateTime().Now.ToString("yyyyMMdd") + ".csv"
+
+        File.Copy(g_strPutFilePath + "\LOANLMSP.csv", NewFilePath + backFileName, True)
+
+    End Sub
+
+
+End Module
