@@ -1,6 +1,6 @@
 USE [SKL_LOAN]
 GO
-/****** Object:  StoredProcedure [dbo].[USP_House_QryInsCheckData_eloan]    Script Date: 2019/12/24 下午 05:04:10 ******/
+/****** Object:  StoredProcedure [dbo].[USP_House_QryInsCheckData_eloan]    Script Date: 2019/12/25 下午 04:11:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -26,7 +26,6 @@ begin
 			,LoanKey uniqueidentifier
 			,CaseNO varchar(20)
 		)
-
 		
 		create table #TempInsCheckData(
              DataDate varchar(8)
@@ -59,10 +58,9 @@ begin
 		begin
 			declare @SourceDB varchar(50)  select top 1 @SourceDB=SourceDB FROM [SKL_CORE].[dbo].[Core_QueryItem] 
 			declare @cmd nvarchar(MAX) set @cmd=''
-			--declare @GetDate varchar(10) set @GetDate = convert(varchar(8),dateadd(m,-6,getdate()),112)
-			declare @GetDate varchar(10) set @GetDate ='20190101'
-			--declare @EtlDate varchar(8) set @EtlDate = convert(varchar(8),dateadd(m,0,getdate()),112)
-			declare @EtlDate varchar(10) set @EtlDate ='20191201'
+			declare @GetDate varchar(10) set @GetDate = convert(varchar(8),dateadd(m,-6,getdate()),112)
+			declare @EtlDate varchar(8) set @EtlDate = convert(varchar(8),dateadd(m,0,getdate()),112)
+			
 
 			--篩選AS400撥款日上線首日6個月內資料
 			set @cmd = N''+
@@ -83,18 +81,18 @@ begin
 					from SKL_LOAN.dbo.Flow_House FH
 					inner join SKL_LOAN.dbo.House_CustMain HC 
 					on FH.LoanKey = HC.LoanKey
-				where LoanCloseStatus = '1' and LoanCloseDecision = '51'
+				where LoanCloseStatus = '1' and LoanCloseDecision = '51'  				
 			),ApproveAmount as (
 				--核准金額
 				--House_AccountChief	審核結果輸入		取最後核准角色(LastUpdateRoleNo)的金額
-				--House_AccountChange	授信條件變更審核表	取最後核准角色(LastUpdateRoleNo)的金額
+				--Temp_House_AccountChange	授信條件變更審核表	取最後核准角色(LastUpdateRoleNo)的金額
 				select 
 					Loankey
 					,sum(Amount) as ApproveAmount
 					,LastUpdateRoleNo 
 					from (
 						select 
-							ROW_NUMBER() over (partition by Loankey,Ukey order by convert(int,LastUpdateRoleNo) desc) SeqNo
+							ROW_NUMBER() over (partition by Loankey,Ukey order by House_AccountChief.LastUpdateDate desc) SeqNo
 							,LoanKey
 							,Ukey
 							,Amount
@@ -108,7 +106,7 @@ begin
 					,LastUpdateRoleNo 
 					from (
 						select 
-							ROW_NUMBER() over (partition by Loankey,Ukey order by convert(int,LastUpdateRoleNo) desc) SeqNo
+							ROW_NUMBER() over (partition by Loankey,Ukey order by House_AccountChange.LastUpdateDate desc) SeqNo
 							,LoanKey
 							,Ukey
 							,Amount
@@ -126,7 +124,6 @@ begin
 							ROW_NUMBER() over (partition by ApproveDate.LoanKey order by convert(int,LastUpdateRoleNo) desc) SeqNo
 							,ApproveDate.LoanKey
 							,ApproveDate.CaseNO
-							--,ApproveDate.LastFlowUpdateDate ApproveDate
 							,ApproveDate.ApproveDate
 							,ApproveAmount.ApproveAmount
 							,ApproveAmount.LastUpdateRoleNo
@@ -147,49 +144,76 @@ begin
 			--將資料寫入#TempInsCheckData
 			insert into #TempInsCheckData 
 			select 
-				CONVERT(varchar(8), GETDATE(),112)  as DataDate --資料日期(年月日)
-				,#TempLOAN.LoanKey
-                ,#TempLOAN.CaseNO--放款案號
-				,m.CustId
-				,m.CustNo--借款人戶號
-				,m.CustName--借款人姓名
-				,#TempLOAN.ApproveDate as ApproveDate--核貸日
-				,#TempLOAN.ApproveAmount as CheckAmount --核貸金額
-				,tempLN.LMSLLD --撥款日
-				,CAST(tempLN.LMSFLA as DECIMAL ) AS LMSFLA
-				,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
-				,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
-				,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
-				,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
-				,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
-				,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
-				,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
-				,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
-				,t.AngentEmpName as AngentEmpName  --介紹人
-				,t.AngentEmpNo as AngentEmpNo  --員工代號
-				,t.AngentUnitNo as AngentUnitNo  --單位代號			
-				,getdate() as LastUpdateDate--產製時間
-			from skl_loan.dbo.Flow_House f 
-			inner join #TempLOAN on #TempLOAN.LoanKey=f.LoanKey
-			inner join skl_loan.dbo.House_CustMain m on f.LoanKey=m.LoanKey
-			inner join skl_loan.dbo.House_CustIncome i on m.LoanKey=i.LoanKey
-		    left join skl_loan.dbo.House_Introduce t on t.LoanKey=m.LoanKey
-			left join (
+				T.DataDate
+				,T.LoanKey
+				,T.CaseNO
+				,t.CustId
+				,T.CustNo
+				,T.CustName
+				,T.ApproveDate
+				,T.CheckAmount
+				,T.LMSLLD
+				,T.LMSFLA
+				,T.IncomeSalary
+				,T.IncomeWork
+				,T.IncomeBusiness
+				,T.IncomeRant
+				,T.IncomeInterest
+				,T.IncomeOther
+				,T.IncomeYear
+				,T.Estimate
+				,T.AngentEmpName
+				,T.AngentEmpNo
+				,T.AngentUnitNo
+				,T.LastUpdateDate
+			from (
 				select 
-					fh.CaseNO as CaseNO   --案號
-					,MAX(tn.LMSLLD) as LMSLLD  --撥款日
-					,SUM(CAST(tn.LMSFLA  as float))as LMSFLA  --撥款金額
-				from skl_loan.dbo.Flow_House fh
-				inner join skl_loan.dbo.Book_Account ba on ba.LoanKey=fh.LoanKey
-				inner join #TempLOAN  on fh.LoanKey=#TempLOAN.LoanKey
-				inner join skl_loan.dbo.House_CustMain m on #TempLOAN.LoanKey=m.LoanKey
-				inner join #TempLNLMSP tn on m.CustNo= tn.LMSACN and ba.AccNo=tn.LMSAPN			 
-				group by fh.CaseNO						
-			)tempLN ON tempLN.CaseNO=#TempLOAN.CaseNO		    
-			where  #TempLOAN.ApproveDate between @GetDate and @EtlDate  --日期區間
-			and m.LoanWay <> '13'	--20191220	ES1703	排除貸後授變的案件
-			order by #TempLOAN.ApproveDate desc			
-			 					
+					ROW_NUMBER() over (partition by #TempLOAN.CaseNO order by convert(int,#TempLOAN.ApproveDate) desc) SeqNo
+					,CONVERT(varchar(8), GETDATE(),112)  as DataDate --資料日期(年月日)
+					,#TempLOAN.LoanKey as LoanKey
+					,#TempLOAN.CaseNO as CaseNO--放款案號
+					,m.CustId as CustId
+					,m.CustNo as CustNo--借款人戶號
+					,m.CustName as CustName--借款人姓名
+					,#TempLOAN.ApproveDate as ApproveDate--核貸日
+					,#TempLOAN.ApproveAmount as CheckAmount --核貸金額
+					,tempLN.LMSLLD as LMSLLD --撥款日
+					,CAST(tempLN.LMSFLA as DECIMAL ) AS LMSFLA
+					,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
+					,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
+					,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
+					,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
+					,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
+					,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
+					,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
+					,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
+					,t.AngentEmpName as AngentEmpName  --介紹人
+					,t.AngentEmpNo as AngentEmpNo  --員工代號
+					,t.AngentUnitNo as AngentUnitNo  --單位代號			
+					,getdate() as LastUpdateDate--產製時間
+				from skl_loan.dbo.Flow_House f 
+				inner join #TempLOAN on #TempLOAN.LoanKey=f.LoanKey
+				inner join skl_loan.dbo.House_CustMain m on f.LoanKey=m.LoanKey
+				inner join skl_loan.dbo.House_CustIncome i on m.LoanKey=i.LoanKey
+				left join skl_loan.dbo.House_Introduce t on t.LoanKey=m.LoanKey
+				left join (
+					select 
+						fh.CaseNO as CaseNO   --案號
+						,MAX(tn.LMSLLD) as LMSLLD  --撥款日
+						,SUM(CAST(tn.LMSFLA  as float))as LMSFLA  --撥款金額
+					from skl_loan.dbo.Flow_House fh
+					inner join skl_loan.dbo.Book_Account ba on ba.LoanKey=fh.LoanKey
+					inner join #TempLOAN  on fh.LoanKey=#TempLOAN.LoanKey
+					inner join skl_loan.dbo.House_CustMain m on #TempLOAN.LoanKey=m.LoanKey
+					inner join #TempLNLMSP tn on m.CustNo= tn.LMSACN and ba.AccNo=tn.LMSAPN					 	 
+					group by fh.CaseNO						
+				)tempLN ON tempLN.CaseNO=#TempLOAN.CaseNO		    
+				where  (#TempLOAN.ApproveDate between @GetDate and @EtlDate  --核准日日期區間
+				or tempLN.LMSLLD between @GetDate and @EtlDate) --撥款日日期區間
+				and m.LoanWay <> '13'	--20191220	ES1703	排除貸後授變的案件
+					
+			)T WHERE T.SeqNo='1'
+	
 		end
 
 		--判斷house_insCheckData是否有資料，若有資料則跑上線次日每日執行
@@ -214,18 +238,18 @@ begin
 					,CaseNO
 					,LastFlowUpdateDate 
 				from SKL_LOAN.dbo.Flow_House 
-				where LoanCloseStatus = '1' and LoanCloseDecision = '51'
+				where LoanCloseStatus = '1' and LoanCloseDecision = '51' 				
 			),ApproveAmount as (
 				--核准金額
 				--House_AccountChief	審核結果輸入		取最後核准角色(LastUpdateRoleNo)的金額
-				--House_AccountChange	授信條件變更審核表	取最後核准角色(LastUpdateRoleNo)的金額
+				--Temp_House_AccountChange	授信條件變更審核表	取最後核准角色(LastUpdateRoleNo)的金額
 				select 
 					Loankey
 					,sum(Amount) as ApproveAmount
 					,LastUpdateRoleNo 
 				from (
 					select 
-						ROW_NUMBER() over (partition by Loankey,Ukey order by convert(int,LastUpdateRoleNo) desc) SeqNo
+						ROW_NUMBER() over (partition by Loankey,Ukey order by House_AccountChief.LastUpdateDate desc) SeqNo
 						,LoanKey
 						,Ukey
 						,Amount
@@ -239,7 +263,7 @@ begin
 					,LastUpdateRoleNo 
 				from (
 					select 
-						ROW_NUMBER() over (partition by Loankey,Ukey order by convert(int,LastUpdateRoleNo) desc) SeqNo
+						ROW_NUMBER() over (partition by Loankey,Ukey order by House_AccountChange.LastUpdateDate desc) SeqNo
 						,LoanKey
 						,Ukey
 						,Amount
@@ -254,7 +278,7 @@ begin
 					,ApproveAmount 
 				from (
 					select 
-						ROW_NUMBER() over (partition by ApproveDate.LoanKey order by convert(int,LastUpdateRoleNo) desc) SeqNo
+						ROW_NUMBER() over (partition by ApproveDate.LoanKey  order by convert(int,LastUpdateRoleNo) desc) SeqNo
 						,ApproveDate.LoanKey
 						,ApproveDate.CaseNO
 						,ApproveDate.LastFlowUpdateDate as ApproveDate
@@ -275,78 +299,135 @@ begin
 			group by ApproveAmount,LoanKey,CaseNO
 
 			--將資料寫入house_insCheckData
+			--insert into #TempInsCheckData 
+			;with TempSummary as (
+				select
+					CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
+					,#TempLOAN.LoanKey as LoanKey
+					,#TempLOAN.CaseNO as CaseNO--放款案號
+					,m.CustId as CustId	
+					,m.CustNo as CustNo--借款人戶號
+					,m.CustName as CustName--借款人姓名
+					,#TempLOAN.ApproveDate as ApproveDate--核貸日
+					,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額				
+				    ,MAX(#TempLNLMSP.LMSLLD) as LMSLLD  --撥款日
+					,SUM(CAST(#TempLNLMSP.LMSFLA AS int)) as LMSFLA 			 
+					,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
+					,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
+					,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
+					,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
+					,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
+					,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
+					,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
+					,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
+					,t.AngentEmpName as AngentEmpName  --介紹人
+					,t.AngentEmpNo as AngentEmpNo  --員工代號
+					,t.AngentUnitNo as AngentUnitNo  --單位代號			
+					,getdate()as LastUpdateDate--產製時間
+				from #TempLNLMSP			
+				inner join skl_loan.dbo.House_CustMain m on m.CustNo=#TempLNLMSP.LMSACN			
+				inner join skl_loan.dbo.Flow_House h on h.LoanKey= m.LoanKey
+			    inner join skl_loan.dbo.Book_Account ba on  ba.AccNo=#TempLNLMSP.LMSAPN	 and ba.LoanKey= m.LoanKey
+			    inner join #TempLOAN on #TempLOAN.LoanKey=m.LoanKey and #TempLOAN.caseno=h.caseno
+			    inner join skl_loan.dbo.House_CustIncome i on h.LoanKey=i.LoanKey
+			    left join skl_loan.dbo.House_Introduce t on t.LoanKey=h.LoanKey	
+                group by 
+					#TempLNLMSP.LMSACN,#TempLOAN.LoanKey,#TempLOAN.CaseNO,m.CustId,m.CustNo,m.CustName,#TempLOAN.ApproveDate
+                   ,#TempLOAN.ApproveAmount,i.IncomeSalary,i.IncomeWork,i.IncomeBusiness,i.IncomeRant
+					,i.IncomeInterest,i.IncomeOther,i.IncomeYear,i.EstimateCust,i.EstimateMate,i.EstimateOther,t.AngentEmpName,t.AngentEmpNo,t.AngentUnitNo						
+				union
+				select
+					CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
+					,#TempLOAN.LoanKey as LoanKey
+					,#TempLOAN.CaseNO as CaseNO--放款案號
+					,main.CustId as CustId
+					,main.CustNo as CustNo--借款人戶號
+					,main.CustName as CustName--借款人姓名
+					,#TempLOAN.ApproveDate as ApproveDate--核貸日
+					,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額					
+					,'' as LMSLLD--撥款日
+					,'' as LMSFLA--撥款金額
+					,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
+					,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
+					,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
+					,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
+					,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
+					,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
+					,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
+					,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
+					,t.AngentEmpName as AngentEmpName  --介紹人
+					,t.AngentEmpNo as AngentEmpNo  --員工代號
+					,t.AngentUnitNo as AngentUnitNo  --單位代號			
+					, getdate() as LastUpdateDate--產製時間
+				from skl_loan.dbo.Flow_House f 
+				inner join skl_loan.dbo.House_CustMain main on f.LoanKey=main.LoanKey
+				inner join #TempLOAN on #TempLOAN.LoanKey=main.LoanKey
+				inner join skl_loan.dbo.House_CustIncome i on f.LoanKey=i.LoanKey
+				left join skl_loan.dbo.House_Introduce t on t.LoanKey=f.LoanKey
+				inner join skl_loan.dbo.Book_Account ba on ba.LoanKey=f.LoanKey		
+				where #TempLOAN.ApproveDate = @GetDate1  --日期
+				and main.LoanWay <> '13'	--20191220	ES1703	排除貸後授變的案件
+				group by 
+					#TempLOAN.LoanKey,#TempLOAN.CaseNO,main.custid,main.CustNo,main.CustName,#TempLOAN.ApproveAmount,#TempLOAN.ApproveDate
+					,i.IncomeSalary,i.IncomeWork,i.IncomeBusiness,i.IncomeRant,i.IncomeInterest,i.IncomeOther,i.IncomeYear,i.EstimateCust,i.EstimateMate
+					,i.EstimateOther,t.AngentEmpName,t.AngentEmpNo,t.AngentUnitNo		
+			),TempOrder as(
+					select 			
+						TSS.DataDate
+						,TSS.LoanKey
+						,TSS.CaseNO
+						,TSS.CustId
+						,TSS.CustNo
+						,TSS.CustName
+						,TSS.ApproveDate
+						,TSS.CheckAmount
+						,TSS.LMSLLD
+						,TSS.LMSFLA
+						,TSS.IncomeSalary
+						,TSS.IncomeWork
+						,TSS.IncomeBusiness
+						,TSS.IncomeRant
+						,TSS.IncomeInterest
+						,TSS.IncomeOther
+						,TSS.IncomeYear
+						,TSS.Estimate
+						,TSS.AngentEmpName
+						,TSS.AngentEmpNo
+						,TSS.AngentUnitNo
+						,TSS.LastUpdateDate
+					from (
+					select
+						 ROW_NUMBER() over (partition by TS.CaseNO order by convert(int,TS.ApproveDate) desc)SeqNo
+					    ,TS.DataDate
+						,TS.LoanKey
+						,TS.CaseNO
+						,TS.CustId
+						,TS.CustNo
+						,ts.CustName
+						,TS.ApproveDate
+						,TS.CheckAmount
+						,TS.LMSLLD
+						,TS.LMSFLA
+						,TS.IncomeSalary
+						,TS.IncomeWork
+						,TS.IncomeBusiness
+						,TS.IncomeRant
+						,TS.IncomeInterest
+						,TS.IncomeOther
+						,TS.IncomeYear
+						,TS.Estimate
+						,TS.AngentEmpName
+						,TS.AngentEmpNo
+						,TS.AngentUnitNo
+						,TS.LastUpdateDate 
+						from TempSummary ts
+					)TSS
+					WHERE TSS.SeqNo=1			
+			)			
+
 			insert into #TempInsCheckData 
-			select
-				CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
-				,#TempLOAN.LoanKey
-				,#TempLOAN.CaseNO--放款案號
-				,m.CustId			
-				,m.CustNo--借款人戶號
-				,m.CustName--借款人姓名
-				,#TempLOAN.ApproveDate as ApproveDate--核貸日
-				,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額				
-				,MAX(#TempLNLMSP.LMSLLD) as LMSLLD  --撥款日
-				,SUM(CAST(#TempLNLMSP.LMSFLA AS int)) as LMSFLA 		 
-				,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
-				,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
-				,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
-				,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
-				,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
-				,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
-				,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
-				,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
-				,t.AngentEmpName as AngentEmpName  --介紹人
-				,t.AngentEmpNo as AngentEmpNo  --員工代號
-				,t.AngentUnitNo as AngentUnitNo  --單位代號			
-				,getdate()as LastUpdateDate--產製時間
-			from #TempLNLMSP			
-			inner join skl_loan.dbo.House_CustMain m on m.CustNo=#TempLNLMSP.LMSACN
-			inner join #TempLOAN on #TempLOAN.LoanKey=m.LoanKey
-			inner join skl_loan.dbo.Flow_House h on h.LoanKey= #TempLOAN.LoanKey
-			inner join skl_loan.dbo.Book_Account ba on  ba.AccNo=#TempLNLMSP.LMSAPN	
-			inner join skl_loan.dbo.House_CustIncome i on h.LoanKey=i.LoanKey
-			left join skl_loan.dbo.House_Introduce t on t.LoanKey=h.LoanKey		
-			group by 
-				#TempLNLMSP.LMSACN,#TempLNLMSP.LMSAPN,#TempLOAN.LoanKey,m.CustNo,m.custid,m.CustName,#TempLOAN.CaseNO,#TempLOAN.ApproveDate
-				,#TempLOAN.ApproveAmount,m.CheckAmount,ba.Amount,i.IncomeSalary,i.IncomeWork,i.IncomeBusiness,i.IncomeRant
-				,i.IncomeInterest,i.IncomeOther,i.IncomeYear,i.EstimateCust,i.EstimateMate,i.EstimateOther,t.AngentEmpName,t.AngentEmpNo,t.AngentUnitNo		
-			union
-			select
-				CONVERT(varchar(8),GETDATE(),112)  as DataDate --資料日期(年月日)
-				,#TempLOAN.LoanKey
-                ,#TempLOAN.CaseNO--放款案號
-                ,main.CustId
-				,main.CustNo--借款人戶號
-				,main.CustName--借款人姓名
-				,#TempLOAN.ApproveDate as ApproveDate--核貸日
-				,#TempLOAN.ApproveAmount AS CheckAmount		--核貸金額					
-				,''--核貸日
-				,'' --核貸金額
-				,ISNULL(cast(round((i.IncomeSalary/10000),0)as int),0) as IncomeSalary
-				,ISNULL(cast(round((i.IncomeWork/10000),0)as int),0) as IncomeWork
-				,ISNULL(cast(round((i.IncomeBusiness/10000),0)as int),0) as IncomeBusiness
-				,ISNULL(cast(round((i.IncomeRant/10000),0)as int),0)  as IncomeRant 
-				,ISNULL(cast(round((i.IncomeInterest/10000),0)as int),0) as IncomeInterest
-				,ISNULL(cast(round((i.IncomeOther/10000),0)as int),0) as IncomeOther
-				,ISNULL(cast(round((i.IncomeYear/10000),0)as int),0) as IncomeYear
-				,ISNULL(cast(round(((i.EstimateCust+i.EstimateMate+i.EstimateOther)/10000),0)as int),0) as Estimate
-				,t.AngentEmpName as AngentEmpName  --介紹人
-				,t.AngentEmpNo as AngentEmpNo  --員工代號
-				,t.AngentUnitNo as AngentUnitNo  --單位代號			
-				, getdate() as LastUpdateDate--產製時間
-			from skl_loan.dbo.Flow_House f 
-			inner join skl_loan.dbo.House_CustMain main on f.LoanKey=main.LoanKey
-			inner join #TempLOAN on #TempLOAN.LoanKey=main.LoanKey
-			inner join skl_loan.dbo.House_CustIncome i on f.LoanKey=i.LoanKey
-			left join skl_loan.dbo.House_Introduce t on t.LoanKey=f.LoanKey
-			inner join skl_loan.dbo.Book_Account ba on ba.LoanKey=f.LoanKey		
-			where #TempLOAN.ApproveDate >  '20191202'  --日期
-			and main.LoanWay <> '13'	--20191220	ES1703	排除貸後授變的案件
-			group by 
-				#TempLOAN.LoanKey,#TempLOAN.CaseNO,main.custid,main.CustNo,main.CustName,f.CaseNO,ba.amount,#TempLOAN.ApproveAmount,#TempLOAN.ApproveDate
-				,i.IncomeSalary,i.IncomeWork,i.IncomeBusiness,i.IncomeRant,i.IncomeInterest,i.IncomeOther,i.IncomeYear,i.EstimateCust,i.EstimateMate
-				,i.EstimateOther,t.AngentEmpName,t.AngentEmpNo,t.AngentUnitNo		             
-		end
+			select  * from TempOrder
+	end
 
 		drop table #TempLNLMSP
 		drop table #TempLOAN
@@ -376,7 +457,6 @@ begin
 				,LastUpdateDate--產製時間
 		from #TempInsCheckData  
 		
-
 		Select
 		        i.CaseNo 
 			+ '|'+ ISNULL (i.CustId,'')
@@ -398,8 +478,6 @@ begin
 			+ '|'+ ISNULL (i.AngentUnitNo,'') 
 		    as txt
 		From #TempInsCheckData  i
-
-	
 
 		drop table #TempInsCheckData  
 end
