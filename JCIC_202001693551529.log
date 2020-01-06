@@ -1,0 +1,3101 @@
+2020/01/06 09:35:51 - 讀取設定檔 - Loading transformation from XML file [file:///C:/ETL/AP/Yearly/FILE_IMPORT_READ_PROPERTIES.ktr]
+2020/01/06 09:35:51 - FILE_IMPORT_READ_PROPERTIES - Dispatching started for transformation [FILE_IMPORT_READ_PROPERTIES]
+2020/01/06 09:35:51 - 取得清單KEY.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:51 - 讀取設定檔.0 - Finished processing (I=81, O=0, R=0, W=81, U=0, E=0)
+2020/01/06 09:35:51 - 篩選、編/解碼.0 - Optimization level set to 9.
+2020/01/06 09:35:51 - 合併.0 - Finished processing (I=0, O=0, R=82, W=81, U=0, E=0)
+2020/01/06 09:35:51 - 篩選、編/解碼.0 - Finished processing (I=0, O=0, R=81, W=81, U=0, E=0)
+2020/01/06 09:35:51 - 計算數量.0 - Finished processing (I=0, O=0, R=81, W=1, U=0, E=0)
+2020/01/06 09:35:51 - 符合驗證?.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:51 - 下一步.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:51 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [新增tmp_file]
+2020/01/06 09:35:51 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [新增zip_file]
+2020/01/06 09:35:51 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [新增error_file]
+2020/01/06 09:35:51 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [參數初步檢驗]
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [Write To Log 2]
+2020/01/06 09:35:52 -  - *************FTP準備開始跑*************
+2020/01/06 09:35:52 -  - 
+2020/01/06 09:35:52 -  - 
+2020/01/06 09:35:52 -  - 資料檔檔名:IFRS9_DR_JCIC_201912.xlsx
+2020/01/06 09:35:52 -  - 無索引檔
+2020/01/06 09:35:52 -  - 檔案來源為 人工上傳
+2020/01/06 09:35:52 -  - 上傳檔案資料夾:C:\ETL\DATA\
+2020/01/06 09:35:52 -  - ***************************************
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [上傳檔案?]
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [FTP-上傳檔案]
+2020/01/06 09:35:52 - FTP-上傳檔案 - Using PDIFTPClient override for exists() fix.
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [FTP-下載資料檔]
+2020/01/06 09:35:52 - FTP-下載資料檔 - Started FTP job to ${FTP_IP}
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [資料檔案已到位?]
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [有索引檔?]
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Starting entry [Success]
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [Success] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [有索引檔?] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [資料檔案已到位?] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [FTP-下載資料檔] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [FTP-上傳檔案] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [上傳檔案?] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [Write To Log 2] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [參數初步檢驗] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [新增error_file] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [新增zip_file] (result=[true])
+2020/01/06 09:35:52 - FILE_IMPORT_FTP_ON_DOWNLOAD - Finished job entry [新增tmp_file] (result=[true])
+2020/01/06 09:35:52 - JCIC_MAIN - Starting entry [清除資料表?]
+2020/01/06 09:35:52 - JCIC_MAIN - Starting entry [清除資料]
+2020/01/06 09:35:52 - JCIC_MAIN - Starting entry [讀取檔案/寫入DB]
+2020/01/06 09:35:52 - 讀取檔案/寫入DB - Loading transformation from XML file [file:///C:/ETL/AP/Yearly/JCIC_MAIN_READ_WRITE.ktr]
+2020/01/06 09:35:52 - JCIC_MAIN_READ_WRITE - Dispatching started for transformation [JCIC_MAIN_READ_WRITE]
+2020/01/06 09:35:52 - 寫入資料表.0 - Connected to database [Ex] (commit=1000)
+2020/01/06 09:35:52 - 讀取檔案.0 - Finished processing (I=462, O=0, R=0, W=462, U=0, E=0)
+2020/01/06 09:35:52 - 分頁處理.0 - Finished processing (I=0, O=0, R=462, W=462, U=0, E=0)
+2020/01/06 09:35:52 - 1.3 營建業.0 - Finished processing (I=0, O=0, R=22, W=44, U=0, E=0)
+2020/01/06 09:35:52 - 2.4 消金其他.0 - Finished processing (I=0, O=0, R=19, W=38, U=0, E=0)
+2020/01/06 09:35:52 - 1.1 製造業.0 - Finished processing (I=0, O=0, R=22, W=44, U=0, E=0)
+2020/01/06 09:35:52 - 2.1 房貸.0 - Finished processing (I=0, O=0, R=22, W=44, U=0, E=0)
+2020/01/06 09:35:52 - 3.1 企金.0 - Finished processing (I=0, O=0, R=163, W=326, U=0, E=0)
+2020/01/06 09:35:52 - 1.4 服務業與其他.0 - Finished processing (I=0, O=0, R=22, W=44, U=0, E=0)
+2020/01/06 09:35:52 - 4.1 房貸.0 - Finished processing (I=0, O=0, R=133, W=266, U=0, E=0)
+2020/01/06 09:35:52 - 1.2 批發零售業.0 - Finished processing (I=0, O=0, R=22, W=44, U=0, E=0)
+2020/01/06 09:35:52 - 4.4 其他.0 - Finished processing (I=0, O=0, R=37, W=74, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 5.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 3.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 4.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 6.0 - Finished processing (I=0, O=0, R=19, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 7.0 - Finished processing (I=0, O=0, R=163, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 8.0 - Finished processing (I=0, O=0, R=133, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 2.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得最後一行 9.0 - Finished processing (I=0, O=0, R=37, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 3.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 6.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 5.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 4.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 8.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 5.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 7.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 3.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 計算取得的行數 9.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 6.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 4.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 8.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 7.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 取得的行數 9.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 合併 6.0 - Finished processing (I=0, O=0, R=20, W=19, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 6.0 - Finished processing (I=0, O=0, R=19, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 合併 2.0 - Finished processing (I=0, O=0, R=23, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 2.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 合併 3.0 - Finished processing (I=0, O=0, R=23, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 合併 4.0 - Finished processing (I=0, O=0, R=23, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 合併 7.0 - Finished processing (I=0, O=0, R=164, W=163, U=0, E=0)
+2020/01/06 09:35:52 - 合併.0 - Finished processing (I=0, O=0, R=23, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 合併 8.0 - Finished processing (I=0, O=0, R=134, W=133, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 4.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 3.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別 5.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 篩選資料 5.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 7.0 - Finished processing (I=0, O=0, R=163, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別 6.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 合併 5.0 - Finished processing (I=0, O=0, R=23, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 合併 9.0 - Finished processing (I=0, O=0, R=38, W=37, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 8.0 - Finished processing (I=0, O=0, R=133, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 2-1與2-4資料.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別 4.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 過濾特定欄位 6.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位 4.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 篩選資料 9.0 - Finished processing (I=0, O=0, R=37, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位 2.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位 7.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:52 - 1-1到1-4資料.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 轉換資料陣列 5.0 - Finished processing (I=0, O=0, R=4, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 組合固定值.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 轉換資料陣列 4.0 - Finished processing (I=0, O=0, R=2, W=22, U=0, E=0)
+2020/01/06 09:35:52 - 指定編號.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 取代字串 2.0 - Finished processing (I=0, O=0, R=144, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 過濾NULL.0 - Finished processing (I=0, O=0, R=22, W=21, U=0, E=0)
+2020/01/06 09:35:52 - 指定編號 3.0 - Finished processing (I=0, O=0, R=144, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 指定編號 2.0 - Finished processing (I=0, O=0, R=21, W=21, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 分流.0 - Finished processing (I=0, O=0, R=21, W=21, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別 5.0 - Finished processing (I=0, O=0, R=144, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 設定固定常數.0 - Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2020/01/06 09:35:52 - 設定固定常數 4.0 - Finished processing (I=0, O=0, R=11, W=11, U=0, E=0)
+2020/01/06 09:35:52 - 設定固定常數 5.0 - Finished processing (I=0, O=0, R=144, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位 5.0 - Finished processing (I=0, O=0, R=144, W=144, U=0, E=0)
+2020/01/06 09:35:52 - 驗證是否為數字?.0 - Optimization level set to 9.
+2020/01/06 09:35:52 - 組合固定值.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別 4.0 - Finished processing (I=0, O=0, R=11, W=11, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2020/01/06 09:35:52 - 過濾特定欄位 3.0 - Finished processing (I=0, O=0, R=11, W=11, U=0, E=0)
+2020/01/06 09:35:52 - 加上期別.0 - Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ------------> Linenr 1------------------------------
+2020/01/06 09:35:52 - Write to log.0 - 編號 = 1
+2020/01/06 09:35:52 - Write to log.0 - MARGAIN_PD_VALUE =  0.008665594
+2020/01/06 09:35:52 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:52 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:52 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:52 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:52 - Write to log.0 - error = 0
+2020/01/06 09:35:52 - Write to log.0 - ok = 1
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ====================
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ------------> Linenr 2------------------------------
+2020/01/06 09:35:52 - Write to log.0 - 編號 = 2
+2020/01/06 09:35:52 - Write to log.0 - MARGAIN_PD_VALUE =  0.014479595
+2020/01/06 09:35:52 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:52 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:52 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:52 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:52 - Write to log.0 - error = 0
+2020/01/06 09:35:52 - Write to log.0 - ok = 1
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ====================
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ------------> Linenr 3------------------------------
+2020/01/06 09:35:52 - Write to log.0 - 編號 = 3
+2020/01/06 09:35:52 - Write to log.0 - MARGAIN_PD_VALUE =  0.012589126
+2020/01/06 09:35:52 - Write to log.0 - PD_APPLY_TYPE = E3
+2020/01/06 09:35:52 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:52 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:52 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:52 - Write to log.0 - error = 0
+2020/01/06 09:35:52 - Write to log.0 - ok = 1
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ====================
+2020/01/06 09:35:52 - 過濾特定欄位 9.0 - Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ------------> Linenr 4------------------------------
+2020/01/06 09:35:52 - Write to log.0 - 編號 = 4
+2020/01/06 09:35:52 - Write to log.0 - MARGAIN_PD_VALUE =  0.012116421
+2020/01/06 09:35:52 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:52 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:52 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:52 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:52 - Write to log.0 - error = 0
+2020/01/06 09:35:52 - Write to log.0 - ok = 1
+2020/01/06 09:35:52 - Write to log.0 - 
+2020/01/06 09:35:52 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 5------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 1
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001002953
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 6------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 2
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003499747
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 7------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 3
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003422109
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 8------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 4
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00279312
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 9------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 5
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001849684
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 10------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 6
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001314245
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 11------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 7
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001063269
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 12------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 8
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000972276
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 13------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 9
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000726705
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 14------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 10
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00076697
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 15------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 11
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000827407
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 16------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 12
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001849666
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 17------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 13
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004336406
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 18------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 14
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004567338
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 19------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 15
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00478249
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 20------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 16
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004439846
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 21------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 17
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004990998
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 22------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 18
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004225442
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 23------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 19
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003904043
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 24------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 20
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004801017
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 25------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 21
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003787735
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S1
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = Y
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - 整合資料 7.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2020/01/06 09:35:53 - 轉換資料陣列 6.0 - Finished processing (I=0, O=0, R=2, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 取代字串 4.0 - Finished processing (I=0, O=0, R=72, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 指定編號 4.0 - Finished processing (I=0, O=0, R=72, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 加上期別 6.0 - Finished processing (I=0, O=0, R=72, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 設定固定常數 6.0 - Finished processing (I=0, O=0, R=72, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 過濾特定欄位 8.0 - Finished processing (I=0, O=0, R=72, W=72, U=0, E=0)
+2020/01/06 09:35:53 - 資料彙整 4.0 - Finished processing (I=0, O=0, R=21, W=21, U=0, E=0)
+2020/01/06 09:35:53 - 資料彙整.0 - Finished processing (I=0, O=0, R=25, W=25, U=0, E=0)
+2020/01/06 09:35:53 - 固定常數.0 - Finished processing (I=0, O=0, R=25, W=25, U=0, E=0)
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 26------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 1
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.043836126
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 27------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 2
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.036736005
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 28------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 3
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.035964956
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 29------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 4
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.028538342
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 30------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 5
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.027231545
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 31------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 6
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.015480965
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 32------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 7
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.010940249
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 33------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 8
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.009494027
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 34------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 9
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.007890082
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 35------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 10
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.005589393
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 36------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 11
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008303344
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 37------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 12
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006806403
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 38------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 13
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004329692
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 39------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 14
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00461567
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 40------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 15
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003138646
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 41------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 16
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002570344
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 42------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 17
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003815241
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 43------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 18
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002287124
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 44------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 19
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003054555
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 45------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 20
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002597516
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 46------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 21
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001539419
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 47------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 22
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001058423
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 48------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 23
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002154521
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 49------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 24
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001306295
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 50------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 25
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001632959
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 51------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 26
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001103886
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 52------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 27
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001954932
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 53------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 28
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001000479
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 54------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 29
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001447615
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 55------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 30
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000969432
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 56------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 31
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000581097
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 57------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 32
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000578632
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 58------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 33
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001387296
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 59------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 34
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000607715
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 60------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 35
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000968266
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 61------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 36
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000573377
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E4
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 62------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 37
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.063160381
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 63------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 38
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.057359785
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 64------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 39
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.04755559
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 65------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 40
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.041711088
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 66------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 41
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.034609044
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 67------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 42
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.020547423
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 68------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 43
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.017757275
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 69------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 44
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.013380811
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 70------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 45
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.011613169
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 71------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 46
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.009456672
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 72------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 47
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008313491
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 73------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 48
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008643829
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 74------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 49
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.007166324
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 75------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 50
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006651459
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 76------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 51
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.005869701
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 77------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 52
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004807308
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 78------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 53
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004446454
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 79------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 54
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003653561
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 80------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 55
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00398024
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 81------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 56
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002427093
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 82------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 57
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003203513
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 83------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 58
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002543664
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 84------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 59
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002781505
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 85------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 60
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00181055
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 86------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 61
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002207236
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 87------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 62
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002459083
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 88------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 63
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00200016
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 89------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 64
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00160022
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 90------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 65
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.0019792
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 91------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 66
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002088035
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 92------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 67
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001197389
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 93------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 68
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000999109
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 94------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 69
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001622327
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 95------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 70
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00095498
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 96------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 71
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000868228
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 97------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 72
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001360234
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = 整體
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 98------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 73
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.078709677
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 99------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 74
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.064
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 100------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 75
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.048
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 101------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 76
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.041806452
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 102------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 77
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.029935484
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 103------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 78
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.024258065
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 104------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 79
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.019354839
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - 資料彙整 2.0 - Finished processing (I=0, O=0, R=169, W=169, U=0, E=0)
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 105------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 80
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.014451613
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 106------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 81
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.015483871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 107------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 82
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.011354839
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 108------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 83
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 109------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 84
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.010322581
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 110------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 85
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006967742
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 111------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 86
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.005935484
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 112------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 87
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.007483871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 113------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 88
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006709677
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 114------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 89
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004129032
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 115------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 90
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004903226
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 116------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 91
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00283871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 117------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 92
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002322581
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 118------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 93
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00283871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 119------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 94
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00283871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 120------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 95
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003354839
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 121------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 96
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002064516
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 122------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 97
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001806452
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 123------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 98
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00283871
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 124------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 99
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002064516
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 125------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 100
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002064516
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 126------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 101
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002580645
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 127------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 102
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002580645
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 128------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 103
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001548387
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 129------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 104
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001032258
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 130------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 105
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001806452
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 131------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 106
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001548387
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 132------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 107
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001290323
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 133------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 108
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002064516
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 134------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 109
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.082497492
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 135------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 110
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.077983952
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 136------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 111
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.064067202
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 137------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 112
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.054538616
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 138------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 113
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.048771314
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 139------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 114
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.026705115
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 140------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 115
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.021940822
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 141------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 116
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.016048144
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 142------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 117
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.011910732
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 143------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 118
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.011910732
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 144------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 119
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008650953
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 145------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 120
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.009904714
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 146------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 121
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.008149448
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 147------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 122
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006895687
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 148------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 123
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00551655
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 149------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 124
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00551655
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 150------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 125
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004638917
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 151------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 126
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003761284
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 152------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 127
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004012036
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 153------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 128
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002382146
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 154------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 129
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003385155
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 155------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 130
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002507523
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 156------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 131
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002632899
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 157------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 132
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002131394
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 158------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 133
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003385155
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 159------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 134
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003259779
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 160------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 135
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002006018
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 161------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 136
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001755266
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 162------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 137
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00225677
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 163------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 138
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00225677
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 164------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 139
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001379137
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 165------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 140
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001504514
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 166------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 141
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00162989
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 167------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 142
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001003009
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 168------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 143
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000877633
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 169------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 144
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.000877633
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = E2
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 170------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 1
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.023226633
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 171------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 2
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.021697054
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 172------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 3
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.01983363
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 173------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 4
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.018600555
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 174------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 5
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.015910277
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 175------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 6
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.009502127
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 176------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 7
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.007781208
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 177------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 8
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.007211454
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 178------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 9
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.006540066
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 179------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 10
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.005979584
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 180------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 11
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.005243212
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 181------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 12
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004932913
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 182------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 13
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004213666
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 183------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 14
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.004001289
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 184------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 15
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003718337
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 185------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 16
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003702917
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 186------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 17
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003210511
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 187------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 18
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.003084387
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 188------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 19
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00284963
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 189------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 20
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00266142
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 190------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 21
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002556052
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 191------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 22
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002451945
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 192------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 23
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002225482
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 193------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 24
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.002176998
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 194------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 25
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00201252
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 195------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 26
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001887699
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 196------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 27
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.0017837
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 197------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 28
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001776042
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 198------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 29
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001548132
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 199------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 30
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.00160937
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 200------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 31
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001511155
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 201------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 32
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001359847
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 202------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 33
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001351696
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 203------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 34
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001307706
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 204------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 35
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001231798
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 205------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 36
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE =  0.001169612
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = C1
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 206------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 37
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 1
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 207------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 38
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 2
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 208------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 39
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = 
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 3
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 0
+2020/01/06 09:35:53 - Write to log.0 - ok = 1
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 209------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 40
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 4
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 210------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 41
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 5
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 211------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 42
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 6
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 212------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 43
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 7
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 213------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 44
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 8
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 214------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 45
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 9
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 215------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 46
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 10
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 216------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 47
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 11
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 217------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 48
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 12
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 218------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 49
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 13
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 219------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 50
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 14
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 220------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 51
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 15
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 221------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 52
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 16
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 222------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 53
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 17
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 223------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 54
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 18
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 224------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 55
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 19
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 225------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 56
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 20
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 226------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 57
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 21
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 227------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 58
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 22
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 228------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 59
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 23
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 229------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 60
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 24
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 230------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 61
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 25
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 231------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 62
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 26
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 232------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 63
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 27
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 233------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 64
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 28
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 234------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 65
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 29
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 235------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 66
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 30
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 236------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 67
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 31
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 237------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 68
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 32
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 238------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 69
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 33
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 239------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 70
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 34
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ------------> Linenr 240------------------------------
+2020/01/06 09:35:53 - Write to log.0 - 編號 = 71
+2020/01/06 09:35:53 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:53 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:53 - Write to log.0 - TOTAL_LOAN_YEAR = 35
+2020/01/06 09:35:53 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:53 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:53 - Write to log.0 - error = 1
+2020/01/06 09:35:53 - Write to log.0 - ok = 0
+2020/01/06 09:35:53 - Write to log.0 - 
+2020/01/06 09:35:53 - Write to log.0 - ====================
+2020/01/06 09:35:54 - Write to log.0 - 
+2020/01/06 09:35:54 - Write to log.0 - ------------> Linenr 241------------------------------
+2020/01/06 09:35:54 - Write to log.0 - 編號 = 72
+2020/01/06 09:35:54 - Write to log.0 - MARGAIN_PD_VALUE = null
+2020/01/06 09:35:54 - Write to log.0 - PD_APPLY_TYPE = null
+2020/01/06 09:35:54 - Write to log.0 - TOTAL_LOAN_YEAR = 36
+2020/01/06 09:35:54 - Write to log.0 - STAGE_LEVEL = S2
+2020/01/06 09:35:54 - Write to log.0 - CYCLE = M
+2020/01/06 09:35:54 - Write to log.0 - error = 1
+2020/01/06 09:35:54 - Write to log.0 - ok = 0
+2020/01/06 09:35:54 - Write to log.0 - 
+2020/01/06 09:35:54 - Write to log.0 - ====================
+2020/01/06 09:35:54 - 資料彙整 3.0 - Finished processing (I=0, O=0, R=241, W=241, U=0, E=0)
+2020/01/06 09:35:54 - 驗證是否為數字?.0 - Finished processing (I=0, O=0, R=241, W=964, U=0, E=0)
+2020/01/06 09:35:54 - 有錯誤資料?.0 - Finished processing (I=0, O=0, R=241, W=35, U=0, E=0)
+2020/01/06 09:35:54 - 統計筆數.0 - Finished processing (I=0, O=0, R=241, W=2, U=0, E=0)
+2020/01/06 09:35:54 - Write to log.0 - Finished processing (I=0, O=0, R=241, W=241, U=0, E=0)
+2020/01/06 09:35:54 - 錯誤訊息.0 - Optimization level set to 9.
+2020/01/06 09:35:54 - 已符合條件?.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:54 - 寫入錯誤清單.0 - Finished processing (I=0, O=35, R=35, W=35, U=0, E=0)
+2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Row nr 1 causing abort : [241], [35], [206], [-1], [TOTAL_COUNT&&241,,OK_COUNT&&206,,ERROR_COUNT&&35
+2020/01/06 09:35:54 - 終止工作 2.0 - ]
+2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : 寫入資料表錯誤
+2020/01/06 09:35:54 - 終止工作 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=1)
+2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - Transformation detected one or more steps with errors.
+2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - Transformation is killing the other steps!
+2020/01/06 09:35:54 - Copy rows to result 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:54 - 錯誤訊息.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:54 - 匯合.0 - Finished processing (I=0, O=0, R=241, W=0, U=0, E=0)
+2020/01/06 09:35:56 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - JCIC_MAIN - Starting entry [組合訊息]
+2020/01/06 09:35:56 - JCIC_MAIN - Starting entry [回傳訊息]
+2020/01/06 09:35:56 - 回傳訊息 - Loading transformation from XML file [file:///C:/ETL/AP/Yearly/FILE_IMPORT_RETURN_MSG.ktr]
+2020/01/06 09:35:56 - FILE_IMPORT_RETURN_MSG - Dispatching started for transformation [FILE_IMPORT_RETURN_MSG]
+2020/01/06 09:35:56 - 開始跑.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - Write to log 2.0 - 
+2020/01/06 09:35:56 - Write to log 2.0 - ------------> Linenr 1------------------------------
+2020/01/06 09:35:56 - Write to log 2.0 - ***********目前傳出之回傳訊息************
+2020/01/06 09:35:56 - Write to log 2.0 - 
+2020/01/06 09:35:56 - Write to log 2.0 - CODE = -1
+2020/01/06 09:35:56 - Write to log 2.0 - MSG = 2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Row nr 1 causing abort : [241], [35], [206], [-1], [TOTAL_COUNT&&241,,OK_COUNT&&206,,ERROR_COUNT&&35
+2020/01/06 09:35:56 - Write to log 2.0 - 2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : 寫入資料表錯誤
+2020/01/06 09:35:56 - Write to log 2.0 - 2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - Write to log 2.0 - 2020/01/06 09:35:56 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - Write to log 2.0 - LOG_PATH = 請參閱:file:///C:/ETL/AP/Yearly\log_file\JCIC_202001693551529.log
+2020/01/06 09:35:56 - Write to log 2.0 - 
+2020/01/06 09:35:56 - Write to log 2.0 - ====================
+2020/01/06 09:35:56 - 取得訊息.0 - Optimization level set to 9.
+2020/01/06 09:35:56 - Write to log 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - 取代.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - 終止工作.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Row nr 1 causing abort : [-1], [2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Row nr 1 causing abort : [241], [35], [206], [-1], [TOTAL_COUNT&&241,,OK_COUNT&&206,,ERROR_COUNT&&35
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : 寫入資料表錯誤
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:56 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!], [請參閱:C:/ETL/AP/Yearly\log_file\JCIC_202001693551529.log], [-1], [
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Row nr 1 causing abort : [241], [35], [206], [-1], [TOTAL_COUNT&&241,,OK_COUNT&&206,,ERROR_COUNT&&35
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:54 - 終止工作 2.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : 寫入資料表錯誤
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:54 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - 終止工作.0 - 2020/01/06 09:35:56 - JCIC_MAIN_READ_WRITE - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - 終止工作.0 - 請參閱:C:/ETL/AP/Yearly\log_file\JCIC_202001693551529.log]
+2020/01/06 09:35:56 - 終止工作.0 - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Aborting after having seen 1 rows.
+2020/01/06 09:35:56 - 終止工作.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=1)
+2020/01/06 09:35:56 - FILE_IMPORT_RETURN_MSG - Transformation detected one or more steps with errors.
+2020/01/06 09:35:56 - FILE_IMPORT_RETURN_MSG - Transformation is killing the other steps!
+2020/01/06 09:35:56 - 判斷是否終止.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - 過濾傳值.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - Copy rows to result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2020/01/06 09:35:56 - FILE_IMPORT_RETURN_MSG - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - 取得訊息.0 - Finished processing (I=0, O=0, R=1, W=2, U=0, E=0)
+2020/01/06 09:35:56 - FILE_IMPORT_RETURN_MSG - ERROR (version 6.1.0.1-196, build 1 from 2016-04-07 12.08.49 by buildguy) : Errors detected!
+2020/01/06 09:35:56 - JCIC_MAIN - Finished job entry [回傳訊息] (result=[false])
+2020/01/06 09:35:56 - JCIC_MAIN - Finished job entry [組合訊息] (result=[false])
+2020/01/06 09:35:56 - JCIC_MAIN - Finished job entry [讀取檔案/寫入DB] (result=[false])
+2020/01/06 09:35:56 - JCIC_MAIN - Finished job entry [清除資料] (result=[false])
+2020/01/06 09:35:56 - JCIC_MAIN - Finished job entry [清除資料表?] (result=[false])
